@@ -1,0 +1,22 @@
+@import '../../assets/styles/styles.scss';
+
+.form {
+
+  // .form__submit
+
+  &__submit {
+    padding: 10px;
+    min-height: 30px;
+    min-width: 100px;
+    background: $submitColorActive;
+
+    color: $accentColorLight;
+
+    @include standartTransition(0.2);
+
+    &:disabled {
+      background: $submitColorDisabled;
+      color: $textColorSecondary;
+    }
+  }
+}

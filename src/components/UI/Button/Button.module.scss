@@ -1,0 +1,20 @@
+@import '../../../assets/styles/styles';
+
+button {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: none;
+  @include standartTransition(0.2);
+  @include extraTextHidden;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}

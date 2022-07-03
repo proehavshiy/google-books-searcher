@@ -1,5 +1,5 @@
 // utils
-import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
+// import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
 // constants
 import { LSNAME_TODO } from '../../../../constants/constants';
 
@@ -11,6 +11,6 @@ export const deleteToDoReducer = (state, action) => {
     ? updState = [...state].filter((el) => !el.isDone)
     : updState = [...state].filter((el) => el.id !== id)
   // save to localStorage arr of todos
-  manageLocalStorage(LSNAME_TODO, 'set', updState)
+  // manageLocalStorage(LSNAME_TODO, 'set', updState)
   return updState
 }

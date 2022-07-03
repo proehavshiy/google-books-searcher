@@ -1,5 +1,5 @@
 // utils
-import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
+// import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
 // constants
 import { LSNAME_TODO } from '../../../../constants/constants';
 
@@ -13,6 +13,6 @@ export const displayCompletedReducer = (state, action) => {
     return el
   })
 
-  manageLocalStorage(LSNAME_TODO, 'set', updState)
+  // manageLocalStorage(LSNAME_TODO, 'set', updState)
   // return updState
 }

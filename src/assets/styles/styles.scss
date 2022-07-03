@@ -1,0 +1,18 @@
+@import './reset';
+@import './normalize';
+@import './variables';
+@import './mixins';
+@import './fonts';
+
+* {
+  font-family: 'Source Sans Pro',
+    sans-serif;
+}
+
+body {
+  background: $contentBlockBg;
+
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25;
+}

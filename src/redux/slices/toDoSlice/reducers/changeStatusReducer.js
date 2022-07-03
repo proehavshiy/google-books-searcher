@@ -1,5 +1,5 @@
 // utils
-import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
+// import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
 // constants
 import { LSNAME_TODO } from '../../../../constants/constants';
 
@@ -32,7 +32,7 @@ export const changeStatusReducer = (state, action) => {
   }
 
   // upd localStorage
-  manageLocalStorage(LSNAME_TODO, 'set', updState)
+  // manageLocalStorage(LSNAME_TODO, 'set', updState)
   // immer error so dont return
   //return updState
 }

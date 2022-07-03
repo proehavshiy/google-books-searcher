@@ -1,0 +1,10 @@
+@import '../../../assets/styles/styles';
+
+.input {
+  @include contentBlockPreset;
+  min-height: 36px;
+  padding: 10px 16px;
+
+  font-size: 12px;
+  @include standartTransition(0.2);
+}

@@ -1,5 +1,5 @@
 // utils
-import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
+// import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
 // constants
 import { LSNAME_FILTER } from '../../../../constants/constants';
 
@@ -9,6 +9,6 @@ export const setFilterStatusReducer = (state, { payload }) => {
     currentStatus: payload,
   }
   // save to localStorage arr of todos
-  manageLocalStorage(LSNAME_FILTER, 'set', updState)
+  // manageLocalStorage(LSNAME_FILTER, 'set', updState)
   return updState
 }

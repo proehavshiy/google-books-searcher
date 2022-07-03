@@ -1,5 +1,5 @@
 // utils
-import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
+// import { manageLocalStorage } from '../../../../utils/manageLocalStorage';
 // constants
 import { LSNAME_TODO } from '../../../../constants/constants';
 
@@ -23,6 +23,6 @@ export const changeEditingModeReducer = (state, action) => {
       updState = state
   }
 
-  manageLocalStorage(LSNAME_TODO, 'set', updState)
+  // manageLocalStorage(LSNAME_TODO, 'set', updState)
   // return updState
 }
