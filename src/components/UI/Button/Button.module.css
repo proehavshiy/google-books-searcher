@@ -1,0 +1,31 @@
+button {
+  color: inherit;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+}
+
+.toggle-all {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  border: none;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  -webkit-appearance: none;
+  color: #e6e6e6;
+}
+
+.toggle-all:before {
+  content: '❯';
+  font-size: 22px;
+  color: inherit;
+}

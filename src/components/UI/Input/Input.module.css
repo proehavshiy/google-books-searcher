@@ -1,0 +1,13 @@
+.form {
+  width: 100%;
+}
+
+.new-todo {
+  margin: 0;
+  width: 100%;
+  font-size: 24px;
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  padding: 16px 16px 16px 60px;
+}

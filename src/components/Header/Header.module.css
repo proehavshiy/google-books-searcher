@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  border-bottom: 1px solid #ededed;
+}
+
+.header h1 {
+  position: absolute;
+  top: -155px;
+  width: 100%;
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  text-transform: capitalize;
+  color: #cc9a9a;
+}
