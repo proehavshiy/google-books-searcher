@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 // constants
 import { EDIT_INPUT_ID } from './constants/constants';
 import Form from './components/Form/Form';
+import BooksSection from './components/BooksSection/BooksSection';
 
 const cn = classNames.bind(styles);
 
@@ -19,7 +20,7 @@ function App() {
     <div className={cn('app')} data-testid='app'>
       <Header />
       <main>
-        main
+        <BooksSection />
       </main>
     </div>
   );

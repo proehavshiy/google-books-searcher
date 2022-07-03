@@ -5,7 +5,6 @@
   min-width: 122px;
   position: relative;
   cursor: pointer;
-  z-index: 999;
 
   font-size: 12px;
   color: $textColorSecondary;
@@ -62,6 +61,7 @@
     top: calc(100% + 5px);
     right: 0;
     width: 100%;
+    z-index: 999;
   }
 
   // .select__option
