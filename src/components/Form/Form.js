@@ -4,7 +4,8 @@ import React, { createRef, useState } from 'react';
 import styles from './Form.module.scss';
 import classNames from 'classnames/bind';
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
 import FormSection from './FormSection/FormSection';
 import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button';
@@ -14,12 +15,15 @@ import Dropdown from '../UI/Dropdown/Dropdown';
 const cn = classNames.bind(styles);
 
 function Form() {
+  const [searchPhrase, setSearchPhrase] = useState(null)
   const dispatch = useDispatch()
+  const books = useSelector((state) => state.books.data)
 
   function onSubmit(e) {
     e.preventDefault()
 
-    console.log('submit:', e);
+    dispatch(fetchBooks(searchPhrase))
+    console.log('books1212:', books);
   }
 
   return (
@@ -31,7 +35,9 @@ function Form() {
           title="Найти книгу"
           labelFor="searchInput">
           <Input
-            id='searchInput' />
+            id='searchInput'
+            handleInput={setSearchPhrase}
+          />
         </FormSection>
       </fieldset>
       <Dropdown

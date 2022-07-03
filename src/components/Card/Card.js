@@ -14,7 +14,8 @@ function Card({ card }) {
 
   return (
     <li className={cn('card')}>
-      {card.name}
+      {card.volumeInfo.title}
+      {card.volumeInfo.authors}
     </li >
   )
 }

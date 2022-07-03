@@ -11,8 +11,12 @@ import { useDispatch } from 'react-redux';
 import { EDIT_INPUT_ID } from './constants/constants';
 import Form from './components/Form/Form';
 import BooksSection from './components/BooksSection/BooksSection';
+import { fetchBooks } from './redux/slices/booksSlice/booksSlice';
 
 const cn = classNames.bind(styles);
+
+// "homepage": "https://proehavshiy.github.io/to-do-list/",
+
 
 function App() {
   const dispatch = useDispatch()
