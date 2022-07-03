@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import FormSection from './FormSection/FormSection';
 import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button';
+import Dropdown from '../UI/Dropdown/Dropdown';
 // constants
 
 const cn = classNames.bind(styles);
@@ -33,7 +34,13 @@ function Form() {
             id='searchInput' />
         </FormSection>
       </fieldset>
-
+      <Dropdown
+        options={[
+          { name: 'one', value: 1, id: 1 },
+          { name: 'two', value: 2, id: 2 },
+          { name: 'three', value: 3, id: 3 },
+        ]}
+      />
       <Button
         style={cn('form__submit')}
         type='submit'
