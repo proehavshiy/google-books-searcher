@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 
 const cn = classNames.bind(styles);
 
-function Dropdown({ options }) {
+function Dropdown({ options, handleOption }) {
   const [selectorHeading, setSelectorHeading] = useState('');
   const [areOptionsVisible, setAreOptionsVisible] = useState(false)
   const selectorRef = useRef(null)
@@ -29,6 +29,7 @@ function Dropdown({ options }) {
 
   function selectOption(selectedOption) {
     setSelectorHeading(selectedOption.name)
+    handleOption(selectedOption.value)
     closeOptionsTab(selectedOption)
   }
 

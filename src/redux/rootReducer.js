@@ -21,6 +21,15 @@ export const preloadedState = {
     data: {},
     status: null,
     error: null,
+    categories: [
+      { name: 'all', value: 'all', id: 1 },
+      { name: 'art', value: 'art', id: 2 },
+      { name: 'biography', value: 'biography', id: 3 },
+      { name: 'computers', value: 'computers', id: 4 },
+      { name: 'history', value: 'history', id: 5 },
+      { name: 'medical', value: 'medical', id: 6 },
+      { name: 'poetry', value: 'poetry', id: 7 },
+    ],
   }
   // [LSNAME_TODO]: initState(LSNAME_TODO),
   // [LSNAME_FILTER]: initState(LSNAME_FILTER),

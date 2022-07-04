@@ -5,12 +5,18 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getBooksReducer } from "./reducers/getBooks";
 
 const API_KEY = 'AIzaSyBNyDVH2q0vYAyz4zBazhe1_P5iLDa1ScU'
+const REQUEST_ADRESS = 'https://www.googleapis.com/books/v1/volumes'
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
-  async function (searchPhrase, thunkAPI) {
+  async function ({ searchPhrase, category }, thunkAPI) {
     console.log('searchPhrase:', searchPhrase);
-    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${searchPhrase}&key=${API_KEY}`)
+    const intitleQuery = `+intitle:${searchPhrase}`
+    console.log('intitleQuery:', intitleQuery);
+    const categoryQuery = category = 'all' ? '' : `+subject:${category}`
+    console.log('categoryQuery:', categoryQuery);
+    console.log('searchString:', `${REQUEST_ADRESS}?q=${intitleQuery}${categoryQuery}&key=${API_KEY}`);
+    const response = await fetch(`${REQUEST_ADRESS}?q=${intitleQuery}${categoryQuery}&key=${API_KEY}`)
     const data = await response.json()
     console.log('data:', data);
     return data

@@ -7,9 +7,7 @@ import classNames from 'classnames/bind';
 
 const cn = classNames.bind(styles);
 
-function Input({ id = 'input', name = id, placeholder = "Введите значение", handleInput }) {
-  const [inputVal, setInputVal] = useState('')
-
+function Input({ id = 'input', name = id, placeholder = "Введите значение", inputValue, setInputValue }) {
   return (
     <input
       className={cn('input')}
@@ -17,13 +15,8 @@ function Input({ id = 'input', name = id, placeholder = "Введите знач
       type="text"
       id={id}
       name={name}
-      value={inputVal}
-      onChange={(e) => {
-        setInputVal(e.target.value);
-        if (handleInput) {
-          handleInput(e.target.value)
-        }
-      }}
+      value={inputValue}
+      onChange={(e) => setInputValue(e.target.value)}
     />
   )
 }

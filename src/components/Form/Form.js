@@ -1,29 +1,39 @@
 
-import React, { createRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // styles
 import styles from './Form.module.scss';
 import classNames from 'classnames/bind';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
+// constants
+// components
 import FormSection from './FormSection/FormSection';
 import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button';
 import Dropdown from '../UI/Dropdown/Dropdown';
-// constants
 
 const cn = classNames.bind(styles);
 
 function Form() {
-  const [searchPhrase, setSearchPhrase] = useState(null)
+  const [searchPhrase, setSearchPhrase] = useState('')
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState('all')
+
   const dispatch = useDispatch()
-  const books = useSelector((state) => state.books.data)
+  const dropdownCategories = useSelector((state) => state.books.categories)
+
+  useEffect(() => {
+    searchPhrase
+      ? setIsSubmitButtonDisabled(false)
+      : setIsSubmitButtonDisabled(true)
+  }, [searchPhrase])
 
   function onSubmit(e) {
     e.preventDefault()
 
-    dispatch(fetchBooks(searchPhrase))
-    console.log('books1212:', books);
+    dispatch(fetchBooks({ searchPhrase, category: selectedCategory }))
+    setSearchPhrase('')
   }
 
   return (
@@ -36,26 +46,20 @@ function Form() {
           labelFor="searchInput">
           <Input
             id='searchInput'
-            handleInput={setSearchPhrase}
+            inputValue={searchPhrase}
+            setInputValue={setSearchPhrase}
           />
         </FormSection>
       </fieldset>
       <Dropdown
-        options={[
-          { name: 'all', value: 'all', id: 1 },
-          { name: 'art', value: 'art', id: 2 },
-          { name: 'biography', value: 'biography', id: 3 },
-          { name: 'computers', value: 'computers', id: 4 },
-          { name: 'history', value: 'history', id: 5 },
-          { name: 'medical', value: 'medical', id: 6 },
-          { name: 'poetry', value: 'poetry', id: 7 },
-        ]}
+        options={dropdownCategories}
+        handleOption={setSelectedCategory}
       />
       <Button
         style={cn('form__submit')}
         type='submit'
         text='Найти'
-        isSelected={false}
+        isDisabled={isSubmitButtonDisabled}
       />
     </form>
   )
