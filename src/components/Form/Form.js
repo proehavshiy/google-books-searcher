@@ -32,7 +32,8 @@ function Form() {
   function onSubmit(e) {
     e.preventDefault()
 
-    dispatch(fetchBooks({ searchPhrase, category: selectedCategory }))
+    console.log('form category:', selectedCategory);
+    dispatch(fetchBooks({ searchPhrase, selectedCategory }))
     setSearchPhrase('')
   }
 

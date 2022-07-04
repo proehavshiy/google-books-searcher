@@ -20,7 +20,7 @@ export const preloadedState = {
   books: {
     data: [],
     pagination: {
-      totalItems: null,
+      totalItems: 0,
       startIndex: 0,
       maxResultsIndex: 30,
     },

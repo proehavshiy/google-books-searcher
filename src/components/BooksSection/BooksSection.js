@@ -19,14 +19,15 @@ function BooksSection() {
   const books = useSelector((state) => state.books.data)
   const sortOptions = useSelector((state) => state.books.sortOptions)
   const isFetchDone = useSelector((state) => state.books.isFetchDone)
+  const totalSearched = useSelector((state) => state.books.pagination.totalItems)
   const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption).data
 
 
   return (
     <div className={cn('books')}>
       <div className={cn('books__control-bar')}>
-        {books.length
-          ? <h1>Найдено: {books.length}</h1>
+        {totalSearched
+          ? <h1>Найдено: {totalSearched}</h1>
           : null
         }
         <Dropdown

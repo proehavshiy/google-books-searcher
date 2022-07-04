@@ -14,6 +14,8 @@ export class CardsForRendering {
           publishedDate = new Date(null).toString(),
           imageLinks: {
             thumbnail = 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png'
+          } = {
+            thumbnail: 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png'
           }
         }
       } = card
