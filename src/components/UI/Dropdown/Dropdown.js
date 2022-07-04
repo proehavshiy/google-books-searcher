@@ -45,14 +45,16 @@ function Dropdown({ options, handleOption }) {
       {areOptionsVisible
         ? (
           <ul className={cn('dropdown__options')}>
-            {options.map(option => (
-              <li className={cn('dropdown__option')}
-                key={option.id}
-                onClick={() => selectOption(option)}
-              >
-                {option?.name}
-              </li>
-            ))}
+            {options
+              .filter(option => option.name !== selectorHeading)
+              .map(option => (
+                <li className={cn('dropdown__option')}
+                  key={option.id}
+                  onClick={() => selectOption(option)}
+                >
+                  {option?.name}
+                </li>
+              ))}
           </ul>
         )
         : null
