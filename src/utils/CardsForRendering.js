@@ -1,10 +1,12 @@
+import { v4 as uuidv4 } from 'uuid';
+
 export class CardsForRendering {
   constructor(array) {
     if (!Array.isArray(array)) return new TypeError('the argument must be an array')
 
     this._data = [...array].map(card => {
       const {
-        id,
+        id = uuidv4(),
         volumeInfo: {
           title = 'Название недоступно',
           categories = [],

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Dropdown from '../UI/Dropdown/Dropdown';
 import CardList from '../CardList/CardList';
 import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
-import { CardsForRendering } from '../../utils/sortCards';
+import { CardsForRendering } from '../../utils/CardsForRendering';
 // constants
 
 const cn = classNames.bind(styles);
@@ -17,6 +17,8 @@ function BooksSection() {
   const [selectedSortOption, setSelectedSortOption] = useState('')
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.data)
+  const sortOptions = useSelector((state) => state.books.sortOptions)
+  const isFetchDone = useSelector((state) => state.books.isFetchDone)
   const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption).data
 
 
@@ -28,14 +30,11 @@ function BooksSection() {
           : null
         }
         <Dropdown
-          options={[
-            { name: 'relevance', value: '', id: 1 },
-            { name: 'newest', value: 'newest', id: 2 },
-            { name: 'oldest', value: 'oldest', id: 3 },
-          ]}
+          options={sortOptions}
           handleOption={setSelectedSortOption}
         />
       </div>
+      {!isFetchDone && <p>LOADING...</p>}
       <div className={cn('books__content')}>
         {books.length
           ?

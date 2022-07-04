@@ -9,17 +9,34 @@ const REQUEST_ADRESS = 'https://www.googleapis.com/books/v1/volumes'
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
-  async function ({ searchPhrase, category }, thunkAPI) {
-    console.log('searchPhrase:', searchPhrase);
-    const intitleQuery = `+intitle:${searchPhrase}`
-    console.log('intitleQuery:', intitleQuery);
-    const categoryQuery = category = 'all' ? '' : `+subject:${category}`
-    console.log('categoryQuery:', categoryQuery);
-    console.log('searchString:', `${REQUEST_ADRESS}?q=${intitleQuery}${categoryQuery}&key=${API_KEY}`);
-    const response = await fetch(`${REQUEST_ADRESS}?q=${intitleQuery}${categoryQuery}&key=${API_KEY}`)
-    const data = await response.json()
-    console.log('data:', data);
-    return data
+  async function ({ searchPhrase, category }, { getState, rejectWithValue }) {
+    try {
+      //  console.log('searchPhrase:', searchPhrase);
+      const intitleQuery = `+intitle:${searchPhrase}`
+      // console.log('intitleQuery:', intitleQuery);
+      const categoryQuery = category = 'all' ? '' : `+subject:${category}`
+      // console.log('categoryQuery:', categoryQuery);
+      // console.log('thunkAPI:', thunkAPI);
+      const { startIndex, maxResultsIndex } = getState().books.pagination
+      console.log('startIndex:', startIndex);
+      console.log('maxResultsIndex:', maxResultsIndex);
+      console.log('searchString:', `${REQUEST_ADRESS}?q=${intitleQuery}${categoryQuery}&startIndex=${startIndex}&maxResults=${maxResultsIndex}&key=${API_KEY}`);
+      const response = await fetch(`${REQUEST_ADRESS}?q=${intitleQuery}${categoryQuery}&startIndex=${startIndex}&maxResults=${maxResultsIndex}&key=${API_KEY}`)
+
+      if (!response.ok) {
+        throw new Error('Ошибка запроса к серверу. Попробуйте позднее')
+      }
+
+      const data = await response.json()
+      console.log('data:', data);
+      return data
+
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+
+
+
     // .then(response => response.json())
     // .then(json => {
     //   console.log(json)
@@ -39,21 +56,26 @@ export const booksSlice = createSlice({
   extraReducers: {
     [fetchBooks.pending]: (state, action) => {
       console.log('pending!:');
-      state.isFetchFulfilled = false
-
+      state.isFetchDone = false
       state.error = null
     },
-    [fetchBooks.fulfilled]: (state, action) => {
+    [fetchBooks.fulfilled]: (state, { payload }) => {
+      state.isFetchDone = true
+
       console.log('fulfilled!:');
-      console.log('isFetchFulfilled:', state.isFetchFulfilled);
+      console.log('isFetchFulfilled:', state.isFetchDone);
 
 
-      console.log(' action.payload:', action.payload);
-      state.data = action.payload.items
+      console.log(' action.payload:', payload);
+      state.data = [...state.data, ...payload.items]
+      state.pagination.totalItems = payload.totalItems
+      state.pagination.startIndex += state.pagination.maxResultsIndex
       console.log('state.books:', state.data);
     },
-    [fetchBooks.rejected]: (state, action) => {
-      console.log('rejected!:');
+    [fetchBooks.rejected]: (state, { payload }) => {
+      state.isFetchDone = true
+      state.error = payload
+      console.log(payload)
     },
 
   }

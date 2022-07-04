@@ -13,6 +13,8 @@ const cn = classNames.bind(styles);
 function CardList({ cards }) {
   const dispatch = useDispatch()
 
+  console.log('cards:', cards);
+
   return (
     <ul className={cn('card-list')}>
       {cards.map(card => (

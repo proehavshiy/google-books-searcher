@@ -2,6 +2,7 @@ import React from 'react';
 // styles
 import styles from './Card.module.scss';
 import classNames from 'classnames/bind';
+import { v4 as uuidv4 } from 'uuid';
 // components
 // redux
 import { useDispatch } from 'react-redux';
@@ -11,8 +12,6 @@ const cn = classNames.bind(styles);
 
 function Card({ card }) {
   const dispatch = useDispatch()
-
-  console.log('card:', card);
 
   const {
     authors, categories, image, title, publishedDate
@@ -31,7 +30,7 @@ function Card({ card }) {
           {title}
         </h3>
         {authors.map(author => (
-          <p className={cn('card__author')}>
+          <p className={cn('card__author')} key={uuidv4()}>
             {author}
           </p>
         ))}
