@@ -9,6 +9,7 @@ import Dropdown from '../UI/Dropdown/Dropdown';
 import CardList from '../CardList/CardList';
 import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
 import { CardsForRendering } from '../../utils/CardsForRendering';
+import Button from '../UI/Button/Button';
 // constants
 
 const cn = classNames.bind(styles);
@@ -20,7 +21,13 @@ function BooksSection() {
   const sortOptions = useSelector((state) => state.books.sortOptions)
   const isFetchDone = useSelector((state) => state.books.isFetchDone)
   const totalSearched = useSelector((state) => state.books.pagination.totalItems)
+  const duplicates = useSelector((state) => state.books.pagination.duplicates)
   const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption).data
+
+
+  function loadMoreBooks() {
+    dispatch(fetchBooks())
+  }
 
 
   return (
@@ -44,8 +51,15 @@ function BooksSection() {
           />
           : null
         }
-
-
+        {
+          (totalSearched && books.length < totalSearched - duplicates)
+            ? <Button
+              style={cn('books__loadMore')}
+              text='Еще'
+              handleClick={loadMoreBooks}
+            />
+            : null
+        }
       </div>
 
     </div>

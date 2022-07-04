@@ -21,11 +21,14 @@ export const preloadedState = {
     data: [],
     pagination: {
       totalItems: 0,
+      duplicates: 0, // поправка на дубликаты (totalItems - дубликаты). Нужна для пагинации, чтобы вовремя скрыть кнопку
       startIndex: 0,
-      maxResultsIndex: 30,
+      maxResultsIndex: 2,
     },
     isFetchDone: true,
     error: null,
+    searchQuery: '',
+    selectedCategory: 'all',
     categories: [
       { name: 'all', value: 'all', id: 1 },
       { name: 'art', value: 'art', id: 2 },

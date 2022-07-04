@@ -5,7 +5,7 @@ import styles from './Button.module.scss';
 
 const cn = classNames.bind(styles);
 
-function Button({ style, id = 'submit', type = 'button', text, isDisabled, handleClick }) {
+function Button({ style, id = 'submit', type = 'button', text, isDisabled = false, handleClick }) {
   return (
     <button
       className={cn(style)}

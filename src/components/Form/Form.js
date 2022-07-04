@@ -5,7 +5,8 @@ import styles from './Form.module.scss';
 import classNames from 'classnames/bind';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
+import { fetchBooks, setSelectedCategory } from '../../redux/slices/booksSlice/booksSlice';
+import { setSearchQuery } from '../../redux/slices/booksSlice/booksSlice';
 // constants
 // components
 import FormSection from './FormSection/FormSection';
@@ -13,28 +14,28 @@ import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button';
 import Dropdown from '../UI/Dropdown/Dropdown';
 
+
 const cn = classNames.bind(styles);
 
 function Form() {
-  const [searchPhrase, setSearchPhrase] = useState('')
+  const [inputValue, setInputValue] = useState('')
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState('all')
 
   const dispatch = useDispatch()
   const dropdownCategories = useSelector((state) => state.books.categories)
 
   useEffect(() => {
-    searchPhrase
+    inputValue
       ? setIsSubmitButtonDisabled(false)
       : setIsSubmitButtonDisabled(true)
-  }, [searchPhrase])
+  }, [inputValue])
 
   function onSubmit(e) {
     e.preventDefault()
 
-    console.log('form category:', selectedCategory);
-    dispatch(fetchBooks({ searchPhrase, selectedCategory }))
-    setSearchPhrase('')
+    dispatch(setSearchQuery(inputValue))
+    dispatch(fetchBooks(inputValue))
+    setInputValue('')
   }
 
   return (
@@ -47,14 +48,16 @@ function Form() {
           labelFor="searchInput">
           <Input
             id='searchInput'
-            inputValue={searchPhrase}
-            setInputValue={setSearchPhrase}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
           />
         </FormSection>
       </fieldset>
       <Dropdown
         options={dropdownCategories}
-        handleOption={setSelectedCategory}
+        handleOption={(selectedCategory) => {
+          dispatch(setSelectedCategory(selectedCategory))
+        }}
       />
       <Button
         style={cn('form__submit')}
