@@ -1,0 +1,11 @@
+@import '../../assets/styles/styles.scss';
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(332px, 1fr));
+  grid-gap: 16px;
+
+  @media (max-width: $maxContentWidth) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}

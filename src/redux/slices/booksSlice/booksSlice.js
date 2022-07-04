@@ -39,17 +39,17 @@ export const booksSlice = createSlice({
   extraReducers: {
     [fetchBooks.pending]: (state, action) => {
       console.log('pending!:');
-      state.status = 'pending'
-      console.log('state.status:', state.status);
+      state.isFetchFulfilled = false
+
       state.error = null
     },
     [fetchBooks.fulfilled]: (state, action) => {
       console.log('fulfilled!:');
-      state.status = 'resolved'
-      console.log('state.status:', state.status);
+      console.log('isFetchFulfilled:', state.isFetchFulfilled);
 
 
-      state.data = action.payload
+      console.log(' action.payload:', action.payload);
+      state.data = action.payload.items
       console.log('state.books:', state.data);
     },
     [fetchBooks.rejected]: (state, action) => {

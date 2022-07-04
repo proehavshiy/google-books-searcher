@@ -18,8 +18,8 @@ export const rootReducer = {
 
 export const preloadedState = {
   books: {
-    data: {},
-    status: null,
+    data: [],
+    isFetchFulfilled: true,
     error: null,
     categories: [
       { name: 'all', value: 'all', id: 1 },

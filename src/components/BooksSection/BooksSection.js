@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // styles
 import styles from './BooksSection.module.scss';
 import classNames from 'classnames/bind';
@@ -8,38 +8,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import Dropdown from '../UI/Dropdown/Dropdown';
 import CardList from '../CardList/CardList';
 import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
+import { CardsForRendering } from '../../utils/sortCards';
 // constants
 
 const cn = classNames.bind(styles);
 
 function BooksSection() {
+  const [selectedSortOption, setSelectedSortOption] = useState('')
   const dispatch = useDispatch()
   const books = useSelector((state) => state.books.data)
+  const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption).data
 
-  useEffect(() => {
-    // fetchBooks()
-    // dispatch(fetchBooks())
-  }, [books])
 
   return (
     <div className={cn('books')}>
       <div className={cn('books__control-bar')}>
-        {books.totalItems
-          ? <h1>Найдено: {books.totalItems}</h1>
+        {books.length
+          ? <h1>Найдено: {books.length}</h1>
           : null
         }
         <Dropdown
           options={[
-            { name: 'relevance', value: 'relevance', id: 1 },
+            { name: 'relevance', value: '', id: 1 },
             { name: 'newest', value: 'newest', id: 2 },
+            { name: 'oldest', value: 'oldest', id: 3 },
           ]}
+          handleOption={setSelectedSortOption}
         />
       </div>
       <div className={cn('books__content')}>
-        {books?.items?.length
+        {books.length
           ?
           <CardList
-            cards={books.items}
+            cards={sortedCards}
           />
           : null
         }
