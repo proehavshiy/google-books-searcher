@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 // styles
 import styles from './Card.module.scss';
 import classNames from 'classnames/bind';
@@ -13,12 +14,19 @@ const cn = classNames.bind(styles);
 function Card({ card }) {
   const dispatch = useDispatch()
 
+
   const {
-    authors, categories, image, title, publishedDate
+    authors, categories, image, title, publishedDate, id
   } = card
 
+  const history = useNavigate()
+
+  function goToBookPage() {
+    history(`/${id}`)
+  }
+
   return (
-    <li className={cn('card')}>
+    <li className={cn('card')} onClick={goToBookPage}>
       <div className={cn('img-wrapper')}>
         <img src={image} alt="book image" className={cn('img')} />
       </div>
