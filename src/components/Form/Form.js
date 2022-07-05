@@ -19,10 +19,13 @@ const cn = classNames.bind(styles);
 
 function Form() {
   const [inputValue, setInputValue] = useState('')
+
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(false)
 
   const dispatch = useDispatch()
   const dropdownCategories = useSelector((state) => state.books.categories)
+  const [selectedQuery, setSelectedQuery] = useState('all')
+
 
   useEffect(() => {
     inputValue
@@ -34,8 +37,10 @@ function Form() {
     e.preventDefault()
 
     dispatch(setSearchQuery(inputValue))
-    dispatch(fetchBooks(inputValue))
-    setInputValue('')
+    console.log('selectedCategory:', selectedQuery);
+    dispatch(setSelectedCategory(selectedQuery))
+    dispatch(fetchBooks())
+    // setInputValue('')
   }
 
   return (
@@ -55,9 +60,7 @@ function Form() {
       </fieldset>
       <Dropdown
         options={dropdownCategories}
-        handleOption={(selectedCategory) => {
-          dispatch(setSelectedCategory(selectedCategory))
-        }}
+        handleOption={setSelectedQuery}
       />
       <Button
         style={cn('form__submit')}

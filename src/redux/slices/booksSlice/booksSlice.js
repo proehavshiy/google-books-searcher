@@ -12,22 +12,18 @@ const REQUEST_ADRESS = 'https://www.googleapis.com/books/v1/volumes'
 
 export const fetchBooks = createAsyncThunk(
   'books/fetchBooks',
-  async function (formSearchQuery, { getState, rejectWithValue, dispatch }) {
+  async function (requestByForm = true, { getState, rejectWithValue, dispatch }) {
     const { pagination: {
       startIndex,
       maxResultsIndex
     }, searchQuery, selectedCategory } = getState().books
 
     // если запрос из формы, то очищаем все прошлые запросы
-    if (formSearchQuery) {
-      dispatch(clearBooks())
-    } else {
-      // если запрос из кнопки пагинации, ио берем searchQuery из стейта
-      formSearchQuery = searchQuery
-    }
+    if (requestByForm) dispatch(clearBooks())
 
+    console.log('!!!:',);
     const categoryQuery = selectedCategory === 'all' ? '' : `+subject:${selectedCategory}`
-    const intitleQuery = `+intitle:${formSearchQuery}`
+    const intitleQuery = `+intitle:${searchQuery}`
 
     try {
 
@@ -36,6 +32,7 @@ export const fetchBooks = createAsyncThunk(
       const response = await fetch(adress)
 
       if (!response.ok) {
+        console.log('error!:', response.ok);
         throw new Error('Ошибка запроса к серверу. Попробуйте позднее')
       }
 
@@ -43,6 +40,7 @@ export const fetchBooks = createAsyncThunk(
       return data
 
     } catch (error) {
+      console.log('error!!!:',);
       return rejectWithValue(error.message)
     }
   }
@@ -51,6 +49,7 @@ export const fetchBooks = createAsyncThunk(
 // helpers
 
 const setError = (state, { payload }) => {
+  console.log('seterror:',);
   state.isFetchDone = true
   state.error = payload
   console.log(payload)
@@ -77,6 +76,13 @@ export const booksSlice = createSlice({
       // тк api возвращает дубликаты (на форуме пишут об этом с 19 года), то приходится фильтровать каждый запрос
       // всего реальных книг будет чуть меньше, чем заявлено в totalItems
       let duplicates = 0
+
+      // когда не пришли данные совсем
+      if (!payload.items) {
+        // подставлыем пустой мок, чтобы избежать ошибки
+        payload.items = []
+        payload.totalItems = 0
+      }
       const booksWithoutDuplicates = Object.values(
         [...state.data, ...payload.items].reduce((acc, curr) => {
           if (acc[`${curr.id}`]) duplicates++

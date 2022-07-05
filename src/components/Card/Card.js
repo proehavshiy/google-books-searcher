@@ -19,22 +19,20 @@ function Card({ card }) {
 
   return (
     <li className={cn('card')}>
-      <div className={cn('card__img-wrapper')}>
-        <img src={image} alt="book image" className={cn('card__img')} />
+      <div className={cn('img-wrapper')}>
+        <img src={image} alt="book image" className={cn('img')} />
       </div>
-      <div className={cn('card__content')}>
-        <p className={cn('card__category')}>
-          {categories[0]}
-        </p>
-        <h3 className={cn('card__heading')}>
-          {title}
-        </h3>
-        {authors.map(author => (
-          <p className={cn('card__author')} key={uuidv4()}>
-            {author}
-          </p>
-        ))}
-        <span>{publishedDate}</span>
+      <div className={cn('content')}>
+        <p className={cn('category')}>{categories[0]}</p>
+        <h3 className={cn('heading')}>{title}</h3>
+        <div className={cn('info')}>
+          <p className={cn('authors')}>
+            {authors.map((author) => (
+              <span key={uuidv4()}>{author}</span>
+            ))}
+          </p >
+          <p>{new Date(publishedDate).getFullYear()}</p>
+        </div>
       </div >
     </li >
   )

@@ -20,10 +20,10 @@ export const preloadedState = {
   books: {
     data: [],
     pagination: {
-      totalItems: 0,
+      totalItems: null,
       duplicates: 0, // поправка на дубликаты (totalItems - дубликаты). Нужна для пагинации, чтобы вовремя скрыть кнопку
       startIndex: 0,
-      maxResultsIndex: 2,
+      maxResultsIndex: 30,
     },
     isFetchDone: true,
     error: null,

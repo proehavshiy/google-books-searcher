@@ -1,0 +1,75 @@
+@import '../../assets/styles/styles.scss';
+
+.card {
+  @include contentBlockPreset;
+  max-width: 420px;
+  position: relative;
+  cursor: pointer;
+  @include standartTransition(0.2);
+  border: 2px solid $accentColorLight;
+
+  &:hover {
+    border: 2px solid $accentColor;
+  }
+
+  @media (max-width: $b768) {
+    max-width: 100%;
+  }
+}
+
+.img-wrapper {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.img {
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.content {
+  padding: 16px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+
+  color: $textColorMain;
+}
+
+.category {
+  flex: 0 0 20px;
+  margin-bottom: 10px;
+
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.heading {
+  flex: 1 0 auto;
+  margin-bottom: 16px;
+
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+
+  font-size: 14px;
+
+  & *:not(:last-of-type) {
+    margin-bottom: 10px;
+  }
+}
+
+.authors {
+  & span:not(:last-of-type)::after {
+    content: ', ';
+  }
+}

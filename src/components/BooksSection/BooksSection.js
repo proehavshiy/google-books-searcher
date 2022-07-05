@@ -26,21 +26,25 @@ function BooksSection() {
 
 
   function loadMoreBooks() {
-    dispatch(fetchBooks())
+    dispatch(fetchBooks(false))
   }
 
 
   return (
     <div className={cn('books')}>
       <div className={cn('books__control-bar')}>
-        {totalSearched
+        {totalSearched !== null
           ? <h1>Найдено: {totalSearched}</h1>
           : null
         }
-        <Dropdown
-          options={sortOptions}
-          handleOption={setSelectedSortOption}
-        />
+        {totalSearched !== 0
+          ? <Dropdown
+            options={sortOptions}
+            handleOption={setSelectedSortOption}
+          />
+          : null
+        }
+
       </div>
       {!isFetchDone && <p>LOADING...</p>}
       <div className={cn('books__content')}>
