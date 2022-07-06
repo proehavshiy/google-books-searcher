@@ -32,16 +32,16 @@ export const DATA_PRESET = (value) => {
     isDone: false,
     isDisplay: true,
     isEditing: false,
-    value
-  }
-}
+    value,
+  };
+};
 
 // initial states
-export const INITIAL_PRESET_TODO = [DATA_PRESET('initial ToDo')]
+export const INITIAL_PRESET_TODO = [DATA_PRESET('initial ToDo')];
 
 export const INITIAL_PRESET_FILTER = {
-  currentStatus: 'all'
-}
+  currentStatus: 'all',
+};
 
 
 

@@ -8,6 +8,6 @@ export const setCurrentBookIdReducer = (state, { payload }) => {
   const updState = {
     ...state,
     currentBookId: payload,
-  }
-  return updState
-}
+  };
+  return updState;
+};

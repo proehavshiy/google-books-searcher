@@ -1,32 +1,35 @@
 import React, { useEffect, useState } from 'react';
+
 // styles
-import styles from './BooksSection.module.scss';
 import classNames from 'classnames/bind';
 // components
 // redux
 import { useDispatch, useSelector } from 'react-redux';
+
 import Dropdown from '../UI/Dropdown/Dropdown';
 import CardList from '../CardList/CardList';
 import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
 import { CardsForRendering } from '../../utils/CardsForRendering';
 import Button from '../UI/Button/Button';
+
+import styles from './BooksSection.module.scss';
 // constants
 
 const cn = classNames.bind(styles);
 
 function BooksSection() {
-  const [selectedSortOption, setSelectedSortOption] = useState('')
-  const dispatch = useDispatch()
-  const books = useSelector((state) => state.books.data)
-  const sortOptions = useSelector((state) => state.books.sortOptions)
-  const isFetchDone = useSelector((state) => state.books.isFetchDone)
-  const totalSearched = useSelector((state) => state.books.pagination.totalItems)
-  const duplicates = useSelector((state) => state.books.pagination.duplicates)
-  const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption).data
+  const [selectedSortOption, setSelectedSortOption] = useState('');
+  const dispatch = useDispatch();
+  const books = useSelector((state) => state.books.data);
+  const sortOptions = useSelector((state) => state.books.sortOptions);
+  const isFetchDone = useSelector((state) => state.books.isFetchDone);
+  const totalSearched = useSelector((state) => state.books.pagination.totalItems);
+  const duplicates = useSelector((state) => state.books.pagination.duplicates);
+  const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption).data;
 
 
   function loadMoreBooks() {
-    dispatch(fetchBooks(false))
+    dispatch(fetchBooks(false));
   }
 
 
@@ -67,7 +70,7 @@ function BooksSection() {
       </div>
 
     </div>
-  )
+  );
 }
 
 export default BooksSection;

@@ -7,6 +7,6 @@ export const getBooksReducer = (state, { payload }) => {
   const updState = {
     ...state,
     books: [state.books, ...payload],
-  }
-  return updState
-}
+  };
+  return updState;
+};

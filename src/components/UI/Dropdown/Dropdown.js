@@ -1,36 +1,38 @@
 import React from 'react';
 // styles
 import classNames from 'classnames/bind';
-import styles from './Dropdown.module.scss';
+
 import { useState } from 'react';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+
+import styles from './Dropdown.module.scss';
 
 const cn = classNames.bind(styles);
 
 function Dropdown({ options, handleOption }) {
   const [selectorHeading, setSelectorHeading] = useState('');
-  const [areOptionsVisible, setAreOptionsVisible] = useState(false)
-  const selectorRef = useRef(null)
+  const [areOptionsVisible, setAreOptionsVisible] = useState(false);
+  const selectorRef = useRef(null);
 
   useEffect(() => {
-    setSelectorHeading(options[0].name)
+    setSelectorHeading(options[0].name);
 
     window.addEventListener('click', closeOptionsTab);
     return () => {
       window.removeEventListener('click', closeOptionsTab);
-    }
-  }, [])
+    };
+  }, []);
 
   function closeOptionsTab(e) {
     if (e.target === selectorRef.current) return;
-    setAreOptionsVisible(false)
+    setAreOptionsVisible(false);
   }
 
   function selectOption(selectedOption) {
-    setSelectorHeading(selectedOption.name)
-    handleOption(selectedOption.value)
-    closeOptionsTab(selectedOption)
+    setSelectorHeading(selectedOption.name);
+    handleOption(selectedOption.value);
+    closeOptionsTab(selectedOption);
   }
 
   return (
@@ -60,7 +62,7 @@ function Dropdown({ options, handleOption }) {
         : null
       }
     </div >
-  )
+  );
 }
 
 export default Dropdown;

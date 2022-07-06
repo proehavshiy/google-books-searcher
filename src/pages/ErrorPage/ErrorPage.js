@@ -1,16 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import classNames from 'classnames/bind';
+
 import Button from '../../components/UI/Button/Button';
 import PageHeading from '../../components/UI/PageHeading/PageHeading';
+
 import styles from './ErrorPage.module.scss';
-import classNames from 'classnames/bind';
 const cn = classNames.bind(styles);
 
 function ErrorPage() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   function goBack() {
-    navigate('/', { replace: true })
+    navigate('/', { replace: true });
   }
 
   return (
@@ -22,7 +25,7 @@ function ErrorPage() {
         handleClick={goBack}
       />
     </div>
-  )
+  );
 }
 
 export default ErrorPage;

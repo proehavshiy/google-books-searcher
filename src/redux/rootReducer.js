@@ -1,10 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
+
 // reducers
 // import sliceToDoReducer from './slices/toDoSlice/toDoSlice';
 // import sliceFilterReducer from './slices/filterSlice/filterSlice';
-import booksSlice from "./slices/booksSlice/booksSlice";
+import { LSNAME_TODO, LSNAME_FILTER } from '../constants/constants';
+
+import booksSlice from './slices/booksSlice/booksSlice';
 // constants
-import { LSNAME_TODO, LSNAME_FILTER } from "../constants/constants";
 // import { initState } from "../utils/initState";
 
 // export const rootReducer = {
@@ -14,7 +16,7 @@ import { LSNAME_TODO, LSNAME_FILTER } from "../constants/constants";
 
 export const rootReducer = {
   books: booksSlice,
-}
+};
 
 export const preloadedState = {
   books: {
@@ -45,14 +47,14 @@ export const preloadedState = {
       { name: 'newest', value: 'newest', id: 2 },
       { name: 'oldest', value: 'oldest', id: 3 },
     ],
-  }
+  },
   // [LSNAME_TODO]: initState(LSNAME_TODO),
   // [LSNAME_FILTER]: initState(LSNAME_FILTER),
-}
+};
 
 const store = configureStore({
   reducer: rootReducer,
   preloadedState,
-})
+});
 
 export default store;

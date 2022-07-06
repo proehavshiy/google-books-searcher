@@ -7,6 +7,6 @@ export const clearBooksReducer = (state, action) => {
   const updState = {
     ...state,
     data: [],
-  }
-  return updState
-}
+  };
+  return updState;
+};

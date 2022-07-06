@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+
 import App from './App';
 import { renderWithRedux } from './utils/testUtils/renderWithRedux';
 

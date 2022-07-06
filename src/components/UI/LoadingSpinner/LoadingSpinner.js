@@ -1,7 +1,9 @@
 import React from 'react';
+
 // styles
-import styles from './LoadingSpinner.module.scss';
 import classNames from 'classnames/bind';
+
+import styles from './LoadingSpinner.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -17,7 +19,7 @@ function LoadingSpinner() {
       <div></div>
       <div></div>
     </div>
-  )
+  );
 }
 
 export default LoadingSpinner;

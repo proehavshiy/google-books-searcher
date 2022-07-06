@@ -1,7 +1,9 @@
 import React from 'react';
+
 // styles
-import styles from './PageHeading.module.scss';
 import classNames from 'classnames/bind';
+
+import styles from './PageHeading.module.scss';
 
 const cn = classNames.bind(styles);
 
@@ -10,7 +12,7 @@ function PageHeading({ children }) {
     <h1 className={cn('page-heading')}>
       {children}
     </h1>
-  )
+  );
 }
 
 export default PageHeading;

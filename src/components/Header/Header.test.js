@@ -1,6 +1,8 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { renderWithRedux } from '../../utils/testUtils/renderWithRedux';
+
 import Header from './Header';
 
 describe('Header', () => {
@@ -19,8 +21,8 @@ describe('Header', () => {
     // переключает все тудушки в статус "не выполнены"
     userEvent.click(ButtonEl);
     getState().toDo.forEach(el => el.isDone === false);
-  })
+  });
 
-})
+});
 
 

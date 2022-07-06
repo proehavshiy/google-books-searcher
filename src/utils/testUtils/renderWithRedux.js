@@ -1,8 +1,9 @@
-import { Provider } from "react-redux";
-import { configureStore } from "@reduxjs/toolkit"
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { render } from '@testing-library/react';
-import { rootReducer } from "../../redux/rootReducer";
-import { preloadedState } from "../../redux/rootReducer";
+
+import { rootReducer } from '../../redux/rootReducer';
+import { preloadedState } from '../../redux/rootReducer';
 
 export const renderWithRedux = (
   component,
@@ -10,7 +11,7 @@ export const renderWithRedux = (
     store = configureStore({
       reducer: rootReducer,
       preloadedState: initialState,
-    })
+    }),
   } = {}
 ) => {
   return {
@@ -19,6 +20,6 @@ export const renderWithRedux = (
         {component}
       </Provider>
     ),
-    store
-  }
-}
+    store,
+  };
+};

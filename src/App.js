@@ -1,14 +1,21 @@
 import React from 'react';
+
 // styles
-import styles from './App.module.css';
 import classNames from 'classnames/bind';
-// pages
-import MainPage from './pages/mainPage';
-// redux
+
 import { useDispatch, useSelector } from 'react-redux';
-import { setError } from './redux/slices/booksSlice/booksSlice';
 
 import { Routes, Route, Navigate } from 'react-router-dom';
+
+import styles from './App.module.css';
+// pages
+import MainPage from './pages/mainPage';
+
+// redux
+
+import { setError } from './redux/slices/booksSlice/booksSlice';
+
+
 import BookPage from './pages/BookPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import Modal from './components/UI/Modal/Modal';
@@ -19,17 +26,17 @@ const cn = classNames.bind(styles);
 // "homepage": "https://proehavshiy.github.io/to-do-list/",
 
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const books = useSelector(state => state.books.data)
-  const isLoading = useSelector(state => !state.books.isFetchDone)
-  const error = useSelector(state => state.books.error)
+  const books = useSelector(state => state.books.data);
+  const isLoading = useSelector(state => !state.books.isFetchDone);
+  const error = useSelector(state => state.books.error);
 
   function closeErrorModal() {
     if (error) {
       setTimeout(() => {
-        dispatch(setError(null))
-      }, 2000)
+        dispatch(setError(null));
+      }, 2000);
     }
   }
 
@@ -42,7 +49,7 @@ function App() {
         />
         <Route
           path='/books/:id'
-          element={books.length === 0 ? <Navigate to="/" replace={true} /> : <BookPage />}
+          element={books.length === 0 ? <Navigate to='/' replace={true} /> : <BookPage />}
         />
         <Route
           path='*'

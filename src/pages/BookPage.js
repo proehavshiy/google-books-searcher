@@ -1,9 +1,11 @@
 import React from 'react';
-import Header from '../components/Header/Header';
-import Book from '../components/Book/Book';
+
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
+import Book from '../components/Book/Book';
+import Header from '../components/Header/Header';
 
 function BookPage() {
   // const { id } = useParams()
@@ -24,12 +26,12 @@ function BookPage() {
 
   //sconsole.log('BookPage params:', params);
   return (
-    // <>
-    //   {book
-    //     ? <><Header /><main>
-    //       <Book />
-    //     </main></>
-    //     : null}
+  // <>
+  //   {book
+  //     ? <><Header /><main>
+  //       <Book />
+  //     </main></>
+  //     : null}
 
     // </>
     <>
@@ -38,7 +40,7 @@ function BookPage() {
         <Book />
       </main>
     </>
-  )
+  );
 }
 
 export default BookPage;
