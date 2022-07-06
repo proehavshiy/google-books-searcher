@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 // components
 // redux
 import { useDispatch } from 'react-redux';
+import { getCurrentBook } from '../../redux/slices/booksSlice/booksSlice';
 // constants
 
 const cn = classNames.bind(styles);

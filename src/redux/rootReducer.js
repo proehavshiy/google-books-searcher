@@ -19,6 +19,7 @@ export const rootReducer = {
 export const preloadedState = {
   books: {
     data: [],
+    currentBook: {},
     pagination: {
       totalItems: null,
       duplicates: 0, // поправка на дубликаты (totalItems - дубликаты). Нужна для пагинации, чтобы вовремя скрыть кнопку
@@ -29,6 +30,7 @@ export const preloadedState = {
     error: null,
     searchQuery: '',
     selectedCategory: 'all',
+    currentBookId: null,
     categories: [
       { name: 'all', value: 'all', id: 1 },
       { name: 'art', value: 'art', id: 2 },

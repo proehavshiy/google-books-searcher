@@ -4,6 +4,7 @@ import { clearBooksReducer } from "./reducers/clearBooks";
 // import { LSNAME_FILTER } from "../../../constants/constants";
 // reducers
 import { getBooksReducer } from "./reducers/getBooks";
+import { setCurrentBookIdReducer } from "./reducers/setCurrentBookId";
 import { setSearchQueryReducer } from "./reducers/setSearchQuery";
 import { setSelectedCategoryReducer } from "./reducers/setSelectedCategory";
 
@@ -46,6 +47,40 @@ export const fetchBooks = createAsyncThunk(
   }
 )
 
+export const getCurrentBook = createAsyncThunk(
+  'books/getCurrentBook',
+  async function fetchBook(bookIdForSearch, { getState, rejectWithValue, dispatch }) {
+    const REQUEST_ADRESS = 'https://www.googleapis.com/books/v1/volumes/'
+    const bookFromState = getState().books.data.find(book => book.id === bookIdForSearch)
+    console.log('bookFromState:', bookFromState);
+    if (bookFromState) {
+      return bookFromState
+    } else {
+      try {
+        console.log('fetch вызвался:',);
+        const adress = `${REQUEST_ADRESS}${bookIdForSearch}`
+        console.log('adress:', adress);
+        const response = await fetch(adress)
+
+        if (!response.ok) {
+          console.log('error!:', response.ok);
+          // throw new Error('Ошибка запроса к серверу. Попробуйте позднее')
+          throw response
+
+        }
+        const data = await response.json()
+        console.log('book from fetch:', data);
+        return data
+      } catch (error) {
+        return rejectWithValue(error.message)
+      }
+    }
+
+  }
+)
+
+
+
 // helpers
 
 const setError = (state, { payload }) => {
@@ -64,9 +99,14 @@ export const booksSlice = createSlice({
     clearBooks: clearBooksReducer,
     setSearchQuery: setSearchQueryReducer,
     setSelectedCategory: setSelectedCategoryReducer,
+    setCurrentBookId: setCurrentBookIdReducer,
   },
   extraReducers: {
     [fetchBooks.pending]: (state, action) => {
+      state.isFetchDone = false
+      state.error = null
+    },
+    [getCurrentBook.pending]: (state, action) => {
       state.isFetchDone = false
       state.error = null
     },
@@ -96,11 +136,16 @@ export const booksSlice = createSlice({
       state.pagination.startIndex += state.pagination.maxResultsIndex
       console.log('length:', state.data.length);
     },
+    [getCurrentBook.fulfilled]: (state, { payload }) => {
+      state.isFetchDone = true
+      state.currentBook = payload
+    },
     [fetchBooks.rejected]: setError,
+    [getCurrentBook.rejected]: setError,
 
   }
 })
 
 
-export const { getBooks, clearBooks, setSearchQuery, setSelectedCategory } = booksSlice.actions
+export const { getBooks, clearBooks, setSearchQuery, setSelectedCategory, setCurrentBookId } = booksSlice.actions
 export default booksSlice.reducer

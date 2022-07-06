@@ -5,7 +5,7 @@ import styles from './Form.module.scss';
 import classNames from 'classnames/bind';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, setSelectedCategory } from '../../redux/slices/booksSlice/booksSlice';
+import { fetchBooks, setCurrentBookId, setSelectedCategory } from '../../redux/slices/booksSlice/booksSlice';
 import { setSearchQuery } from '../../redux/slices/booksSlice/booksSlice';
 // constants
 // components
@@ -13,6 +13,7 @@ import FormSection from './FormSection/FormSection';
 import Input from '../UI/Input/Input'
 import Button from '../UI/Button/Button';
 import Dropdown from '../UI/Dropdown/Dropdown';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 const cn = classNames.bind(styles);
@@ -25,6 +26,15 @@ function Form() {
   const dispatch = useDispatch()
   const dropdownCategories = useSelector((state) => state.books.categories)
   const [selectedQuery, setSelectedQuery] = useState('all')
+
+  const currentPage = useLocation().pathname
+  const history = useNavigate()
+
+  function redirectToMainPage() {
+    if (currentPage !== '/') {
+      history('/')
+    }
+  }
 
 
   useEffect(() => {
@@ -40,7 +50,9 @@ function Form() {
     console.log('selectedCategory:', selectedQuery);
     dispatch(setSelectedCategory(selectedQuery))
     dispatch(fetchBooks())
-    // setInputValue('')
+
+    dispatch(setCurrentBookId(null))
+    redirectToMainPage()
   }
 
   return (
