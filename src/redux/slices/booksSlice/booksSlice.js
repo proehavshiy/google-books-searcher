@@ -5,6 +5,7 @@ import { clearBooksReducer } from "./reducers/clearBooks";
 // reducers
 import { getBooksReducer } from "./reducers/getBooks";
 import { setCurrentBookIdReducer } from "./reducers/setCurrentBookId";
+import { setErrorReducer } from "./reducers/setError";
 import { setSearchQueryReducer } from "./reducers/setSearchQuery";
 import { setSelectedCategoryReducer } from "./reducers/setSelectedCategory";
 
@@ -83,7 +84,7 @@ export const getCurrentBook = createAsyncThunk(
 
 // helpers
 
-const setError = (state, { payload }) => {
+const handleError = (state, { payload }) => {
   console.log('seterror:',);
   state.isFetchDone = true
   state.error = payload
@@ -100,6 +101,7 @@ export const booksSlice = createSlice({
     setSearchQuery: setSearchQueryReducer,
     setSelectedCategory: setSelectedCategoryReducer,
     setCurrentBookId: setCurrentBookIdReducer,
+    setError: setErrorReducer,
   },
   extraReducers: {
     [fetchBooks.pending]: (state, action) => {
@@ -140,12 +142,12 @@ export const booksSlice = createSlice({
       state.isFetchDone = true
       state.currentBook = payload
     },
-    [fetchBooks.rejected]: setError,
-    [getCurrentBook.rejected]: setError,
+    [fetchBooks.rejected]: handleError,
+    [getCurrentBook.rejected]: handleError,
 
   }
 })
 
 
-export const { getBooks, clearBooks, setSearchQuery, setSelectedCategory, setCurrentBookId } = booksSlice.actions
+export const { getBooks, clearBooks, setSearchQuery, setSelectedCategory, setCurrentBookId, setError } = booksSlice.actions
 export default booksSlice.reducer
