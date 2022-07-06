@@ -17,6 +17,8 @@ import { Routes, Route, Navigate, Link, useLocation, useNavigate, useParams } fr
 import BookPage from './pages/BookPage';
 import { useState } from 'react';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
+import Modal from './components/UI/Modal/Modal';
+import LoadingSpinner from './components/UI/LoadingSpinner/LoadingSpinner';
 
 const cn = classNames.bind(styles);
 
@@ -40,6 +42,8 @@ function App() {
   // console.log('idddd:', id);
 
   const books = useSelector(state => state.books.data)
+  const isLoading = useSelector(state => !state.books.isFetchDone)
+
   // const currentBook = useSelector(state => state.books.currentBook)
   // console.log('currentBook:', currentBook);
   return (
@@ -58,6 +62,9 @@ function App() {
           element={<ErrorPage />}
         />
       </Routes>
+      <Modal isOpen={isLoading} >
+        <LoadingSpinner />
+      </Modal>
     </div>
   );
 }
