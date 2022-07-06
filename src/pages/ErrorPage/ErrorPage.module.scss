@@ -1,0 +1,21 @@
+@import '../../assets/styles/styles.scss';
+
+.error-page {
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.goBack {
+  margin-top: 30px;
+  padding: 5px 10px;
+  min-height: 30px;
+  min-width: 100px;
+  background: $textColorMain;
+
+  color: $accentColorLight;
+}

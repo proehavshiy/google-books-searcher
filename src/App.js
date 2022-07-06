@@ -16,6 +16,7 @@ import BooksSection from './components/BooksSection/BooksSection';
 import { Routes, Route, Navigate, Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import BookPage from './pages/BookPage';
 import { useState } from 'react';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const cn = classNames.bind(styles);
 
@@ -49,10 +50,12 @@ function App() {
           element={<MainPage />}
         />
         <Route
-          path='/:id'
-          //element={books.length === 0 ? <Navigate to="/" replace={true} /> : <BookPage />}
+          path='/books/:id'
           element={books.length === 0 ? <Navigate to="/" replace={true} /> : <BookPage />}
-        // element={!books.find(book => book.id === id) ? <Navigate to="/" replace={true} /> : <BookPage getId={getId} />}
+        />
+        <Route
+          path='*'
+          element={<ErrorPage />}
         />
       </Routes>
     </div>

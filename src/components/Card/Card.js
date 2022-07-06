@@ -23,7 +23,7 @@ function Card({ card }) {
   const history = useNavigate()
 
   function goToBookPage() {
-    history(`/${id}`)
+    history(`/books/${id}`)
   }
 
   return (
