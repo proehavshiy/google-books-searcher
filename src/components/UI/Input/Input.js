@@ -1,12 +1,8 @@
 
-import React, { useState } from 'react';
-
-// styles
+import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Input.module.scss';
-// constants
-
 const cn = classNames.bind(styles);
 
 function Input({ id = 'input', name = id, placeholder = 'Введите значение', inputValue, setInputValue }) {

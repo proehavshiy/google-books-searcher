@@ -1,10 +1,7 @@
 import React from 'react';
-
-// styles
 import classNames from 'classnames/bind';
 
 import styles from './LoadingSpinner.module.scss';
-
 const cn = classNames.bind(styles);
 
 function LoadingSpinner() {

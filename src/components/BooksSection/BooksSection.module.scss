@@ -1,0 +1,47 @@
+@import '../../assets/styles/styles.scss';
+
+.books {
+  padding-bottom: 50px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.control-bar {
+  margin-bottom: 20px;
+  padding: 15px;
+  @include contentBlockPreset;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.counter {
+  font-size: 24px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+
+  &>*:not(:last-child) {
+    margin-bottom: 50px;
+  }
+}
+
+.loadMore {
+  padding: 10px 20px;
+}
+
+.initial-placeholder {
+  margin: auto;
+  align-self: center;
+  font-weight: 600;
+  font-size: 32px;
+
+  color: $textColorSecondary;
+
+  @media (max-width: $b768) {
+    font-size: 24px;
+  }
+}
