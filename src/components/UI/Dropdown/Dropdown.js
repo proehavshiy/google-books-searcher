@@ -1,13 +1,8 @@
-import React from 'react';
-// styles
+import React, { useState, useEffect, useRef } from 'react';
+
 import classNames from 'classnames/bind';
 
-import { useState } from 'react';
-import { useRef } from 'react';
-import { useEffect } from 'react';
-
 import styles from './Dropdown.module.scss';
-
 const cn = classNames.bind(styles);
 
 function Dropdown({ options, handleOption }) {
@@ -22,7 +17,7 @@ function Dropdown({ options, handleOption }) {
     return () => {
       window.removeEventListener('click', closeOptionsTab);
     };
-  }, []);
+  }, [options]);
 
   function closeOptionsTab(e) {
     if (e.target === selectorRef.current) return;
@@ -37,30 +32,25 @@ function Dropdown({ options, handleOption }) {
 
   return (
     <div className={cn('dropdown')}>
-      <p className={cn('dropdown__title')}
+      <p className={cn('title')}
         ref={selectorRef}
         onClick={() => setAreOptionsVisible(!areOptionsVisible)}
       >
         {selectorHeading}
         <span></span>
       </p>
-      {areOptionsVisible
-        ? (
-          <ul className={cn('dropdown__options')}>
-            {options
-              .filter(option => option.name !== selectorHeading)
-              .map(option => (
-                <li className={cn('dropdown__option')}
-                  key={option.id}
-                  onClick={() => selectOption(option)}
-                >
-                  {option?.name}
-                </li>
-              ))}
-          </ul>
-        )
-        : null
-      }
+      <ul className={cn('options', { 'options_opened': areOptionsVisible })}>
+        {options
+          .filter(option => option.name !== selectorHeading)
+          .map(option => (
+            <li className={cn('option')}
+              key={option.id}
+              onClick={() => selectOption(option)}
+            >
+              {option?.name}
+            </li>
+          ))}
+      </ul>
     </div >
   );
 }

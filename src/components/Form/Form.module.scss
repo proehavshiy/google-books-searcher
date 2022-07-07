@@ -1,22 +1,31 @@
 @import '../../assets/styles/styles.scss';
 
 .form {
+  padding: 0 10px;
+  width: 100%;
+  max-width: 460px;
 
-  // .form__submit
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-  &__submit {
-    padding: 10px;
-    min-height: 30px;
-    min-width: 100px;
-    background: $submitColorActive;
+.fieldset {
+  padding: 0;
+}
 
-    color: $accentColorLight;
+.submit {
+  padding: 10px;
+  min-height: 20px;
+  min-width: 100px;
+  background: $submitColorActive;
 
-    @include standartTransition(0.2);
+  color: $accentColorLight;
 
-    &:disabled {
-      background: $submitColorDisabled;
-      color: $textColorSecondary;
-    }
+  @include standartTransition(0.2);
+
+  &:disabled {
+    background: $submitColorDisabled;
+    color: $textColorSecondary;
   }
 }

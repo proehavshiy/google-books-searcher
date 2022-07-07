@@ -1,12 +1,8 @@
 
-import React, { Children } from 'react';
-
-// styles
+import React from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './FormSection.module.scss';
-// constants
-
 const cn = classNames.bind(styles);
 
 function FormSection({ children, title = '', labelFor }) {

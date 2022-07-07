@@ -1,11 +1,11 @@
-.section {
-  display: flex;
-  flex-direction: column;
+@import '../../../assets/styles/styles.scss';
 
-  margin-bottom: 24px;
+.section {
+  margin-bottom: 30px;
   padding: 0;
 
-  position: relative;
+  display: flex;
+  flex-direction: column;
 
   &:not(:last-of-type) {
     margin-bottom: 16px;
@@ -16,10 +16,9 @@
   margin-bottom: 4px;
 
   align-self: flex-start;
-  position: relative;
 
   font-size: 10px;
   line-height: 1.3;
   letter-spacing: -0.02em;
-  color: black;
+  color: $textColorMain;
 }
