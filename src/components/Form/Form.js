@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { fetchBooks, setCurrentBookId, setSelectedCategory } from '../../redux/slices/booksSlice/booksSlice';
+import { setSelectedCategory } from '../../redux/slices/booksSlice/booksSlice';
+import { fetchBooks } from '../../redux/slices/booksSlice/MiddleWares/fetchBooks';
 import { setSearchQuery } from '../../redux/slices/booksSlice/booksSlice';
 
 // constants
@@ -56,7 +57,6 @@ function Form() {
     dispatch(setSelectedCategory(selectedQuery));
     dispatch(fetchBooks());
 
-    dispatch(setCurrentBookId(null));
     redirectToMainPage();
   }
 

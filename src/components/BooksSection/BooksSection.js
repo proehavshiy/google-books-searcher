@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Dropdown from '../UI/Dropdown/Dropdown';
 import CardList from '../CardList/CardList';
-import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
+// import { fetchBooks } from '../../redux/slices/booksSlice/booksSlice';
+import { fetchBooks } from '../../redux/slices/booksSlice/MiddleWares/fetchBooks';
 import { CardsForRendering } from '../../utils/CardsForRendering';
 import Button from '../UI/Button/Button';
 

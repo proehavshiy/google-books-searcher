@@ -1,18 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-// reducers
-// import sliceToDoReducer from './slices/toDoSlice/toDoSlice';
-// import sliceFilterReducer from './slices/filterSlice/filterSlice';
-import { LSNAME_TODO, LSNAME_FILTER } from '../constants/constants';
-
 import booksSlice from './slices/booksSlice/booksSlice';
-// constants
-// import { initState } from "../utils/initState";
-
-// export const rootReducer = {
-//   [LSNAME_TODO]: sliceToDoReducer,
-//   [LSNAME_FILTER]: sliceFilterReducer,
-// }
 
 export const rootReducer = {
   books: booksSlice,
@@ -24,7 +12,9 @@ export const preloadedState = {
     currentBook: {},
     pagination: {
       totalItems: null,
-      duplicates: 0, // поправка на дубликаты (totalItems - дубликаты). Нужна для пагинации, чтобы вовремя скрыть кнопку
+      // поправка на дубликаты (totalItems - дубликаты). 
+      // Нужна для пагинации, чтобы вовремя скрыть кнопку. Google Books API выдает дубли в запросах
+      duplicates: 0,
       startIndex: 0,
       maxResultsIndex: 30,
     },
@@ -32,7 +22,6 @@ export const preloadedState = {
     error: null,
     searchQuery: '',
     selectedCategory: 'all',
-    currentBookId: null,
     categories: [
       { name: 'all', value: 'all', id: 1 },
       { name: 'art', value: 'art', id: 2 },
@@ -48,8 +37,6 @@ export const preloadedState = {
       { name: 'oldest', value: 'oldest', id: 3 },
     ],
   },
-  // [LSNAME_TODO]: initState(LSNAME_TODO),
-  // [LSNAME_FILTER]: initState(LSNAME_FILTER),
 };
 
 const store = configureStore({
