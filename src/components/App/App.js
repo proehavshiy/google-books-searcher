@@ -3,13 +3,14 @@ import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import MainPage from '../../pages/mainPage';
+import BookPage from '../../pages/BookPage';
+import ErrorPage from '../../pages/ErrorPage/ErrorPage';
+import Modal from '../UI/Modal/Modal';
+import LoadingSpinner from '../UI/LoadingSpinner/LoadingSpinner';
+import { setError } from '../../redux/slices/booksSlice/booksSlice';
+
 import styles from './App.module.scss';
-import MainPage from './pages/mainPage';
-import BookPage from './pages/BookPage';
-import ErrorPage from './pages/ErrorPage/ErrorPage';
-import Modal from './components/UI/Modal/Modal';
-import LoadingSpinner from './components/UI/LoadingSpinner/LoadingSpinner';
-import { setError } from './redux/slices/booksSlice/booksSlice';
 
 const cn = classNames.bind(styles);
 
