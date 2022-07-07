@@ -1,30 +1,50 @@
 # Google Book Searcher
 
+Приложение, позволяющее искать книги через [Google Books API](https://developers.google.com/books)
+
 <br />
-[Посмотреть деплой]()
+
+[Посмотреть деплой](https://proehavshiy.github.io/google-books-searcher/)
 
 <br/>
 
 ## Экосистема
 * `React SPA`
-* `redux`, `react-redux`, `redux-toolkit`, `Thunk`
-* `uniqid`,
-* `classnames`
-* `gh-pages`
+* `redux`, `react-redux`, `redux-toolkit`, `Thunk` - хранилище
+* `uniqid` -  для уникальных айди
+* `classnames` - для модулей scss
+* `ESlint` - для линтинга
+* `gh-pages` - деплой
 
 ## Функционал
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
+### Элементы
+- [x] Форма из инпута ключевой фразы и селектора категорий. Сабмит-кнопка неактивна при пустом инпуте
+- [x] При запросе в форме не с главной страницы - редирект на главную с найденными карточками
+- [x] Счетчик полученных книг из запроса
+- [x] Фильтрация полученных книг по релефантности, старым и новым изданиям (дропдаун показывается, если найдены книги, и скрыт, если ничего не найдено)
+- [x] Пагинация с шагом 30 и подгрузкой по кнопке
+- [x] Фильтрация дублей результатов запроса к Google Books API
+### Информация о статусах 
+- [x] Спиннер загрузки
+- [x] Попап-информатор об ошибке сервера
+- [x] Информатор дефолтного состояния блока с карточками до запроса 
+### Роутинг
+- [x] Главная страница поиска
+- [x] Страница конкретной книги с динамическим роутом
+- [x] 404 страница
+### Хранилище
+- [x] Организовано модульно через Slice
+- [x] Все reducers и middleware вынесены в отдельные файлы
+### Безопасность
+- [x] API-ключ вынесен в .env и не хранится в коде
+### Верстка
+- [x] Адаптивная до 320px
 
 ## Reference
 * [ТЗ](https://github.com/fugr-ru/frontend-javascript-test-2)
 
 ## Команды:
-* clone branch with ``
+* clone branch with `git@github.com:proehavshiy/google-books-searcher.git`
 * `npm run deploy` - run the project
 * `npm run build` - build final version
 * `npm run lint` - lint all files
