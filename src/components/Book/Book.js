@@ -11,7 +11,14 @@ import { useEffect, useState } from 'react';
 
 import { getCurrentBook } from '../../redux/slices/booksSlice/MiddleWares/getCurrentBook';
 
+import constants from '../../constants/constants';
+
 import styles from './Book.module.scss';
+const {
+  IMG_PLACEHOLDER, TITLE_PLACEHOLDER,
+  CATEGORY_PLACEHOLDER, AUTHOR_PLACEHOLDER,
+  DESCRIPTION_PLACEHOLDER,
+} = constants;
 // constants
 
 const cn = classNames.bind(styles);
@@ -31,17 +38,17 @@ function Book() {
 
   const {
     volumeInfo: {
-      title = 'Название недоступно',
-      categories = ['без категории'],
-      authors = ['Автор неизвестен'],
-      description = 'Описание недоступно',
+      title = TITLE_PLACEHOLDER,
+      categories = [CATEGORY_PLACEHOLDER],
+      authors = [AUTHOR_PLACEHOLDER],
+      description = DESCRIPTION_PLACEHOLDER,
       canonicalVolumeLink = '',
       previewLink = '',
       publishedDate = new Date(null).toString(),
       imageLinks: {
-        thumbnail = 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png',
+        thumbnail = IMG_PLACEHOLDER,
       } = {
-        thumbnail: 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png',
+        thumbnail: IMG_PLACEHOLDER,
       },
     } = {},
   } = book;
@@ -55,7 +62,7 @@ function Book() {
         <div>Loading...</div>
         :
         <><div className={cn('img-wrapper')}>
-          <img src={thumbnail} alt='book image' className={cn('img')} />
+          <img src={thumbnail} alt='book' className={cn('img')} />
         </div><div className={cn('content')}>
             <p className={cn('categories')}>
               {categories.map(category => (

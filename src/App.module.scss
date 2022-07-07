@@ -1,0 +1,10 @@
+@import './assets/styles/styles.scss';
+
+.app {
+  margin: 0 30px;
+  padding: 20px 0;
+
+  @media (max-width: $b768) {
+    margin: 0 10px;
+  }
+}

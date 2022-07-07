@@ -1,5 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
+import constants from '../constants/constants';
+const { IMG_PLACEHOLDER, TITLE_PLACEHOLDER } = constants;
+
 export class CardsForRendering {
   constructor(array) {
     if (!Array.isArray(array)) return new TypeError('the argument must be an array');
@@ -8,16 +11,16 @@ export class CardsForRendering {
       const {
         id = uuidv4(),
         volumeInfo: {
-          title = 'Название недоступно',
+          title = TITLE_PLACEHOLDER,
           categories = [],
           authors = [],
           publishedDate = new Date(null).toString(),
           imageLinks: {
-            thumbnail = 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png',
+            thumbnail = IMG_PLACEHOLDER,
           } = {
-            thumbnail: 'https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png',
+            thumbnail: IMG_PLACEHOLDER,
           },
-        },
+        } = {},
       } = card;
 
       return {
@@ -38,14 +41,14 @@ export class CardsForRendering {
   sortByParam(param) {
     if (typeof param !== 'string') return new TypeError('sortParam must be a string');
     switch (param) {
-    case 'newest':
-      this._data.sort(this._sortByNewest);
-      return this;
-    case 'oldest':
-      this._data.sort(this._sortByOldest);
-      return this;
-    default:
-      return this;
+      case 'newest':
+        this._data.sort(this._sortByNewest);
+        return this;
+      case 'oldest':
+        this._data.sort(this._sortByOldest);
+        return this;
+      default:
+        return this;
     }
   }
 
