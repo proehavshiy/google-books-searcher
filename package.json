@@ -1,6 +1,7 @@
 {
   "name": "to-do-list",
   "version": "0.1.0",
+  "homepage": "https://proehavshiy.github.io/google-books-searcher/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",

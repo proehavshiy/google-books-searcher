@@ -7,12 +7,11 @@ import { Provider } from 'react-redux';
 import App from './components/App/App';
 import store from './redux/rootReducer';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router basename='/'>
+      <Router basename='/google-books-searcher/'>
         <App />
       </Router>
     </Provider>

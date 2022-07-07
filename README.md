@@ -25,7 +25,8 @@
 
 ## Команды:
 * clone branch with ``
-* `npm run deploy` - run the project
+* `npm run start` - run the project
 * `npm run build` - build final version
+* `npm run deploy` - deploy the project to gh-pages
 * `npm run lint` - lint all files
 * `npm run lint:fix` - fix all fixable files
