@@ -4,4 +4,8 @@
   font-weight: 600;
   font-size: 28px;
   color: $textColorMain;
+
+  @media (max-width: $b768) {
+    font-size: 24px;
+  }
 }

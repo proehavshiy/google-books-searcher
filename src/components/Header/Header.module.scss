@@ -1,7 +1,11 @@
 .header {
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #ededed;
+  justify-content: center;
 }
 
-.header h1 {}
+.header h1 {
+  margin-bottom: 10px;
+  align-self: center;
+}
