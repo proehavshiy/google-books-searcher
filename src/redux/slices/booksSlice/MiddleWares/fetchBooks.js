@@ -21,7 +21,7 @@ export const fetchBooks = createAsyncThunk(
     // чтобы разные запросы не стакались в стор
     if (requestByForm) dispatch(clearBooks());
 
-    const categoryQuery = selectedCategory === 'all' ? '' : `+subject:${selectedCategory}`;
+    const categoryQuery = selectedCategory.value === 'all' ? '' : `+subject:${selectedCategory.value}`;
     const intitleQuery = `+intitle:${searchQuery}`;
     const paginationQuery = `&startIndex=${startIndex}&maxResults=${maxResultsIndex}`;
 

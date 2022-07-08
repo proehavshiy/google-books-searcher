@@ -7,6 +7,7 @@ import { setSelectedCategoryReducer } from './reducers/setSelectedCategory';
 
 import { fetchBooks, handleFulfilledFetchBooks } from './MiddleWares/fetchBooks';
 import { getCurrentBook, handleFulfilledGetCurrentBook } from './MiddleWares/getCurrentBook';
+import { setSelectedSortOptionReducer } from './reducers/setSelectedSortOption';
 
 //extraReducers helpers
 const handlePending = (state) => {
@@ -25,6 +26,7 @@ export const booksSlice = createSlice({
     clearBooks: clearBooksReducer,
     setSearchQuery: setSearchQueryReducer,
     setSelectedCategory: setSelectedCategoryReducer,
+    setSelectedSortOption: setSelectedSortOptionReducer,
     setError: setErrorReducer,
   },
   extraReducers: {
@@ -41,6 +43,7 @@ export const {
   clearBooks,
   setSearchQuery,
   setSelectedCategory,
+  setSelectedSortOption,
   setError,
 } = booksSlice.actions;
 

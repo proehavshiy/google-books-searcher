@@ -5,14 +5,11 @@ import classNames from 'classnames/bind';
 import styles from './Dropdown.module.scss';
 const cn = classNames.bind(styles);
 
-function Dropdown({ options, handleOption }) {
-  const [selectorHeading, setSelectorHeading] = useState('');
+function Dropdown({ options, currentOption, handleOption }) {
   const [areOptionsVisible, setAreOptionsVisible] = useState(false);
   const selectorRef = useRef(null);
 
   useEffect(() => {
-    setSelectorHeading(options[0].name);
-
     window.addEventListener('click', closeOptionsTab);
     return () => {
       window.removeEventListener('click', closeOptionsTab);
@@ -25,8 +22,7 @@ function Dropdown({ options, handleOption }) {
   }
 
   function selectOption(selectedOption) {
-    setSelectorHeading(selectedOption.name);
-    handleOption(selectedOption.value);
+    handleOption(selectedOption);
     closeOptionsTab(selectedOption);
   }
 
@@ -36,12 +32,12 @@ function Dropdown({ options, handleOption }) {
         ref={selectorRef}
         onClick={() => setAreOptionsVisible(!areOptionsVisible)}
       >
-        {selectorHeading}
+        {currentOption.name}
         <span></span>
       </p>
       <ul className={cn('options', { 'options_opened': areOptionsVisible })}>
         {options
-          .filter(option => option.name !== selectorHeading)
+          .filter(option => option.value !== currentOption.value)
           .map(option => (
             <li className={cn('option')}
               key={option.id}

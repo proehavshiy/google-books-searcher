@@ -1,12 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
+import {
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+
+import storage from 'redux-persist/lib/storage';
 
 import booksSlice from './slices/booksSlice/booksSlice';
 
-export const rootReducer = {
+const rootReducer = {
   books: booksSlice,
 };
 
-export const preloadedState = {
+const preloadedState = {
   books: {
     data: [],
     currentBook: {},
@@ -21,7 +33,8 @@ export const preloadedState = {
     isFetchDone: true,
     error: null,
     searchQuery: '',
-    selectedCategory: 'all',
+    selectedCategory: { name: 'all', value: 'all', id: 1 },
+    selectedSortOption: { name: 'relevance', value: '', id: 1 },
     categories: [
       { name: 'all', value: 'all', id: 1 },
       { name: 'art', value: 'art', id: 2 },
@@ -39,9 +52,25 @@ export const preloadedState = {
   },
 };
 
+
+const rootPersistConfig = {
+  key: 'GoogleBooksSearcher',
+  storage,
+  blacklist: ['isFetchDone', 'error', 'categories', 'sortOptions'],
+};
+
+const reducers = combineReducers(rootReducer);
+const persistedReducer = persistReducer(rootPersistConfig, reducers);
+
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: persistedReducer,
   preloadedState,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export default store;

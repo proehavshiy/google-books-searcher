@@ -8,16 +8,18 @@ import Button from '../UI/Button/Button';
 import { fetchBooks } from '../../redux/slices/booksSlice/MiddleWares/fetchBooks';
 import { CardsForRendering } from '../../utils/CardsForRendering';
 
+import { setSelectedSortOption } from '../../redux/slices/booksSlice/booksSlice';
+
 import styles from './BooksSection.module.scss';
 const cn = classNames.bind(styles);
 
 function BooksSection() {
-  const [selectedSortOption, setSelectedSortOption] = useState('');
   const dispatch = useDispatch();
 
   const {
     data: books,
     sortOptions,
+    selectedSortOption,
     pagination: {
       totalItems: totalSearched,
       duplicates,
@@ -25,7 +27,7 @@ function BooksSection() {
   } = useSelector((state) => state.books);
 
   // фильтруем карточки книжек без фильтрации самого стейта
-  const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption).data;
+  const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption.value).data;
 
   function loadMoreBooks() {
     dispatch(fetchBooks(false));
@@ -40,7 +42,10 @@ function BooksSection() {
             {books.length !== 0
               ? <Dropdown
                 options={sortOptions}
-                handleOption={setSelectedSortOption}
+                currentOption={selectedSortOption}
+                handleOption={(selectedOption) => {
+                  dispatch(setSelectedSortOption(selectedOption));
+                }}
               />
               : null
             }
