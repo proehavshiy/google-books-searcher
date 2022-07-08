@@ -47,13 +47,7 @@
 * [ТЗ](https://github.com/fugr-ru/frontend-javascript-test-2)
 
 ## Команды:
-<<<<<<< HEAD
-* clone branch with ``
-* `npm run start` - run the project
-=======
 * clone branch with `git@github.com:proehavshiy/google-books-searcher.git`
-* `npm run deploy` - run the project
->>>>>>> 8683f8470ab866f6246fd248345bca6068fc8208
 * `npm run build` - build final version
 * `npm run deploy` - deploy the project to gh-pages
 * `npm run lint` - lint all files
