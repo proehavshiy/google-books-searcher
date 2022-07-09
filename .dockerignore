@@ -1,0 +1,7 @@
+build
+node_modules
+.eslintrc
+.git
+.gitignore
+.README.md
+Dockerfile

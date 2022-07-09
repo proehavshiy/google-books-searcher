@@ -1,0 +1,14 @@
+build:
+		docker build -t google-books-searcher:dev .
+
+run: 
+		docker run -d -p 3000:3000 --env-file ./.env --rm --name gbs-container google-books-searcher:dev
+
+run-dev: 
+		docker run -d -p 3000:3000 --env-file ./.env -v "/Users/egorkurkin/dev/google-books-searcher:/app" -v :/app/node_modules --rm --name gbs-container google-books-searcher:dev
+
+stop:
+		docker stop gbs-container
+
+check
+		docker ps -a

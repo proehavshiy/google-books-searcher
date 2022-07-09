@@ -12,12 +12,11 @@ import store from './redux/rootReducer';
 
 const persistor = persistStore(store);
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router basename='/google-books-searcher/'>
+      <Router basename='/'>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>

@@ -16,6 +16,7 @@
 * `classnames` - для модулей scss
 * `ESlint` - для линтинга
 * `gh-pages` - деплой
+* `Docker` - для запуска в контейнере
 
 ## Функционал
 ### Элементы
@@ -47,14 +48,20 @@
 * [ТЗ](https://github.com/fugr-ru/frontend-javascript-test-2)
 
 ## Команды:
-<<<<<<< HEAD
 * clone branch with ``
 * `npm run start` - run the project
-=======
-* clone branch with `git@github.com:proehavshiy/google-books-searcher.git`
-* `npm run deploy` - run the project
->>>>>>> 8683f8470ab866f6246fd248345bca6068fc8208
 * `npm run build` - build final version
 * `npm run deploy` - deploy the project to gh-pages
 * `npm run lint` - lint all files
 * `npm run lint:fix` - fix all fixable files
+### Docker
+* `npm run image` - create Docker image
+* `npm run container` - run container
+* `npm run stop` - stop & delete container
+### Docker Make
+* `make build` - create Docker image
+* `make run` - run container
+* `make stop` - stop & delete container
+* `make check` - check all containers
+
+
