@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -19,6 +19,10 @@ function App() {
 
   const { data: books, error } = useSelector(state => state.books);
   const isLoading = useSelector(state => !state.books.isFetchDone);
+
+  useEffect(() => {
+    console.log('books:', books)
+  });
 
   function closeErrorModal() {
     if (error) {
