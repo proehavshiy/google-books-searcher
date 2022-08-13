@@ -10,8 +10,6 @@ import { persistStore } from 'redux-persist';
 import App from './components/App/App';
 import store from './redux/rootReducer';
 
-console.log('консоль:', store.getState());
-
 const persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

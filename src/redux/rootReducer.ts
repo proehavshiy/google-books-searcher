@@ -1,5 +1,5 @@
-import { configureStore, StateFromReducersMapObject, Slice, PreloadedState } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
+import { configureStore, StateFromReducersMapObject, Slice, PreloadedState, ThunkDispatch } from '@reduxjs/toolkit';
+import { AnyAction, combineReducers } from 'redux';
 import {
   persistReducer,
   FLUSH,
@@ -81,3 +81,13 @@ function initStore(preloadedState: any) {
 
 const store = initStore(preloadedState);
 export default store;
+
+// потому что useSelector не дружит с типами (когда хочешь получить state => state.something), 
+// приходится создавать этот тип для кастомной обертки - хука useTypedSelector
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+// export type AppDispatch = typeof store.dispatch
+// export type ReduxState = ReturnType<typeof persistedReducer>;
+// export type AppDispatch = ThunkDispatch<ReduxState, any, AnyAction>;
+export type AppDispatch = typeof store.dispatch;
