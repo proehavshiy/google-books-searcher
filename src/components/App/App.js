@@ -18,10 +18,11 @@ function App() {
   const dispatch = useDispatch();
 
   const { data: books, error } = useSelector(state => state.books);
+  const state = useSelector(state => state);
   const isLoading = useSelector(state => !state.books.isFetchDone);
 
   useEffect(() => {
-    console.log('books:', books)
+    console.log('state:', state)
   });
 
   function closeErrorModal() {

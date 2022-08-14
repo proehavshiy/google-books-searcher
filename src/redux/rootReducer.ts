@@ -19,41 +19,41 @@ const rootReducer = {
   books: booksSlice,
 };
 
-const booksPreloadedState: IBooks = {
-  data: [],
-  currentBook: {},
-  pagination: {
-    totalItems: null,
-    // поправка на дубликаты (totalItems - дубликаты). 
-    // Нужна для пагинации, чтобы вовремя скрыть кнопку. Google Books API выдает дубли в запросах
-    duplicates: 0,
-    startIndex: 0,
-    maxResultsIndex: 30,
-  },
-  isFetchDone: true,
-  error: null,
-  searchQuery: '',
-  selectedCategory: { name: 'all', value: 'all', id: 1 },
-  selectedSortOption: { name: 'relevance', value: '', id: 1 },
-  categories: [
-    { name: 'all', value: 'all', id: 1 },
-    { name: 'art', value: 'art', id: 2 },
-    { name: 'biography', value: 'biography', id: 3 },
-    { name: 'computers', value: 'computers', id: 4 },
-    { name: 'history', value: 'history', id: 5 },
-    { name: 'medical', value: 'medical', id: 6 },
-    { name: 'poetry', value: 'poetry', id: 7 },
-  ],
-  sortOptions: [
-    { name: 'relevance', value: '', id: 1 },
-    { name: 'newest', value: 'newest', id: 2 },
-    { name: 'oldest', value: 'oldest', id: 3 },
-  ],
-};
+// const booksPreloadedState: IBooks = {
+//   data: [],
+//   currentBook: {},
+//   pagination: {
+//     totalItems: null,
+//     // поправка на дубликаты (totalItems - дубликаты). 
+//     // Нужна для пагинации, чтобы вовремя скрыть кнопку. Google Books API выдает дубли в запросах
+//     duplicates: 0,
+//     startIndex: 0,
+//     maxResultsIndex: 30,
+//   },
+//   isFetchDone: true,
+//   error: null,
+//   searchQuery: '',
+//   selectedCategory: { name: 'all', value: 'all', id: 1 },
+//   selectedSortOption: { name: 'relevance', value: '', id: 1 },
+//   categories: [
+//     { name: 'all', value: 'all', id: 1 },
+//     { name: 'art', value: 'art', id: 2 },
+//     { name: 'biography', value: 'biography', id: 3 },
+//     { name: 'computers', value: 'computers', id: 4 },
+//     { name: 'history', value: 'history', id: 5 },
+//     { name: 'medical', value: 'medical', id: 6 },
+//     { name: 'poetry', value: 'poetry', id: 7 },
+//   ],
+//   sortOptions: [
+//     { name: 'relevance', value: '', id: 1 },
+//     { name: 'newest', value: 'newest', id: 2 },
+//     { name: 'oldest', value: 'oldest', id: 3 },
+//   ],
+// };
 
-const preloadedState: IPreloadedState = {
-  books: booksPreloadedState,
-};
+// const preloadedState: IPreloadedState = {
+//   books: booksPreloadedState,
+// };
 
 
 const rootPersistConfig = {
@@ -66,10 +66,10 @@ const reducers = combineReducers(rootReducer);
 const persistedReducer = persistReducer(rootPersistConfig, reducers);
 
 
-function initStore(preloadedState: any) {
+function initStore(preloadedState?: any) {
   return configureStore({
     reducer: persistedReducer,
-    preloadedState,
+    // preloadedState,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: {
@@ -79,7 +79,7 @@ function initStore(preloadedState: any) {
   });
 }
 
-const store = initStore(preloadedState);
+const store = initStore();
 export default store;
 
 // потому что useSelector не дружит с типами (когда хочешь получить state => state.something), 
