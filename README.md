@@ -5,10 +5,12 @@
 <br />
 
 [Посмотреть деплой](https://proehavshiy.github.io/google-books-searcher/)
+![](https://github.com/proehavshiy/google-books-searcher/blob/main/demo.gif)
 
 <br/>
 
 ## Экосистема
+* `TypeScript`
 * `React SPA`
 * `redux`, `react-redux`, `redux-toolkit`, `Thunk` - хранилище, `redux-persist` - для кеширования хранилища в LocalStorage
 * `uniqid` -  для уникальных айди
