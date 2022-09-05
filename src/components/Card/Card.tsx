@@ -1,12 +1,18 @@
-import React from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { v4 as uuidv4 } from 'uuid';
 
+import { ICardForRendering } from '../../types/types';
+
 import styles from './Card.module.scss';
 const cn = classNames.bind(styles);
 
-function Card({ card }) {
+interface ICard {
+  card: ICardForRendering;
+}
+
+const Card: FC<ICard> = ({ card }) => {
   const {
     authors, categories, image, title, publishedDate, id,
   } = card;
@@ -42,6 +48,6 @@ function Card({ card }) {
       </div >
     </li >
   );
-}
+};
 
 export default Card;
