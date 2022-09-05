@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
 import classNames from 'classnames/bind';
-import { useDispatch, useSelector } from 'react-redux';
 
-import Dropdown from '../UI/Dropdown/Dropdown';
 import CardList from '../CardList/CardList';
+import Dropdown from '../UI/Dropdown/Dropdown';
 import Button from '../UI/Button/Button';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHooks';
 import { fetchBooks } from '../../redux/slices/booksSlice/MiddleWares/fetchBooks';
 import { CardsForRendering } from '../../utils/CardsForRendering';
-
 import { setSelectedSortOption } from '../../redux/slices/booksSlice/booksSlice';
+import { ICategory } from '../../types/types';
 
 import styles from './BooksSection.module.scss';
 const cn = classNames.bind(styles);
 
-function BooksSection() {
-  const dispatch = useDispatch();
+const BooksSection: FC = () => {
+  const dispatch = useAppDispatch();
 
   const {
     data: books,
@@ -22,9 +22,8 @@ function BooksSection() {
     selectedSortOption,
     pagination: {
       totalItems: totalSearched,
-      duplicates,
     },
-  } = useSelector((state) => state.books);
+  } = useAppSelector((state) => state.books);
 
   // фильтруем карточки книжек без фильтрации самого стейта
   const sortedCards = new CardsForRendering(books).sortByParam(selectedSortOption.value).data;
@@ -38,13 +37,12 @@ function BooksSection() {
       {totalSearched !== null
         ? <>
           <div className={cn('control-bar')}>
-            {/* <h2 className={cn('counter')}>Найдено: {totalSearched}</h2> */}
             <h2 className={cn('counter')}>Найдено: {books.length}</h2>
             {books.length !== 0
               ? <Dropdown
                 options={sortOptions}
                 currentOption={selectedSortOption}
-                handleOption={(selectedOption) => {
+                handleOption={(selectedOption: ICategory) => {
                   dispatch(setSelectedSortOption(selectedOption));
                 }}
               />
@@ -69,6 +67,6 @@ function BooksSection() {
       }
     </div>
   );
-}
+};
 
 export default BooksSection;
