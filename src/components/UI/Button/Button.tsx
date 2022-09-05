@@ -10,7 +10,7 @@ interface IButton {
   type?: 'button' | 'submit' | 'reset';
   text: string;
   isDisabled?: boolean;
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 
 const Button: FC<IButton> = ({ style, id = 'submit', type = 'button', text, isDisabled = false, handleClick }) => {
