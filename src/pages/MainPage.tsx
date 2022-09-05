@@ -12,6 +12,6 @@ const MainPage: FC = () => {
       </main>
     </>
   );
-}
+};
 
 export default MainPage;

@@ -1,4 +1,4 @@
-export default {
+const constants = {
   REQUEST_ADRESS: 'https://www.googleapis.com/books/v1/volumes',
   API_KEY: process.env.REACT_APP_API_KEY,
   FETCH_ERROR_MESSAGE: 'Ошибка запроса к серверу. Попробуйте позднее',
@@ -8,3 +8,5 @@ export default {
   AUTHOR_PLACEHOLDER: 'Автор неизвестен',
   DESCRIPTION_PLACEHOLDER: 'Описание недоступно',
 };
+
+export default constants;

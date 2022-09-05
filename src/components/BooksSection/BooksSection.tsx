@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHooks';
 import { fetchBooks } from '../../redux/slices/booksSlice/MiddleWares/fetchBooks';
 import { CardsForRendering } from '../../utils/CardsForRendering';
 import { setSelectedSortOption } from '../../redux/slices/booksSlice/booksSlice';
-import { ICategory } from '../../types/types';
 
 import styles from './BooksSection.module.scss';
 const cn = classNames.bind(styles);

@@ -12,6 +12,6 @@ const BookPage: FC = () => {
       </main>
     </>
   );
-}
+};
 
 export default BookPage;

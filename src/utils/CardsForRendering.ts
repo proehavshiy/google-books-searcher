@@ -40,14 +40,14 @@ export class CardsForRendering {
   }
   sortByParam(param: string) {
     switch (param) {
-      case 'newest':
-        this._data.sort(this._sortByNewest);
-        return this;
-      case 'oldest':
-        this._data.sort(this._sortByOldest);
-        return this;
-      default:
-        return this;
+    case 'newest':
+      this._data.sort(this._sortByNewest);
+      return this;
+    case 'oldest':
+      this._data.sort(this._sortByOldest);
+      return this;
+    default:
+      return this;
     }
   }
   _sortByNewest(a: ICardForRendering, b: ICardForRendering) {
