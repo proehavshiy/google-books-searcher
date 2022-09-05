@@ -1,12 +1,18 @@
-import React from 'react';
+import { FC } from 'react';
 import classNames from 'classnames/bind';
 
 import Card from '../Card/Card';
 
+import { ICardForRendering } from '../../types/types';
+
 import styles from './CardList.module.scss';
 const cn = classNames.bind(styles);
 
-function CardList({ cards }) {
+interface ICardList {
+  cards: ICardForRendering[];
+}
+
+const CardList: FC<ICardList> = ({ cards }) => {
   return (
     <ul className={cn('card-list')}>
       {cards.map(card => (
@@ -17,6 +23,6 @@ function CardList({ cards }) {
       ))}
     </ul>
   );
-}
+};
 
 export default CardList;
