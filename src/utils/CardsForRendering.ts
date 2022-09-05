@@ -11,6 +11,7 @@ export class CardsForRendering {
   constructor(array: IBook[]) {
     this._data = [...array].map(card => {
       const {
+        id = uuidv4(),
         volumeInfo: {
           title = TITLE_PLACEHOLDER,
           categories = [],
@@ -30,7 +31,7 @@ export class CardsForRendering {
         categories,
         authors,
         publishedDate,
-        id: uuidv4(),
+        id,
       };
     });
   }
