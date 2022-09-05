@@ -1,9 +1,9 @@
-import React from 'react';
+import { FC } from 'react';
 
 import Book from '../components/Book/Book';
 import Header from '../components/Header/Header';
 
-function BookPage() {
+const BookPage: FC = () => {
   return (
     <>
       <Header />

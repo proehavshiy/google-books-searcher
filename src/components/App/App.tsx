@@ -2,7 +2,7 @@ import { FC } from 'react';
 import classNames from 'classnames/bind';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import MainPage from '../../pages/mainPage';
+import MainPage from '../../pages/MainPage';
 import BookPage from '../../pages/BookPage';
 import ErrorPage from '../../pages/ErrorPage/ErrorPage';
 import Modal from '../UI/Modal/Modal';

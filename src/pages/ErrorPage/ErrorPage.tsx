@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import classNames from 'classnames/bind';
@@ -9,7 +9,7 @@ import PageHeading from '../../components/UI/PageHeading/PageHeading';
 import styles from './ErrorPage.module.scss';
 const cn = classNames.bind(styles);
 
-function ErrorPage() {
+const ErrorPage: FC = () => {
   const navigate = useNavigate();
 
   function goBack() {
@@ -26,6 +26,6 @@ function ErrorPage() {
       />
     </div>
   );
-}
+};
 
 export default ErrorPage;
