@@ -38,7 +38,8 @@ function BooksSection() {
       {totalSearched !== null
         ? <>
           <div className={cn('control-bar')}>
-            <h2 className={cn('counter')}>Найдено: {totalSearched}</h2>
+            {/* <h2 className={cn('counter')}>Найдено: {totalSearched}</h2> */}
+            <h2 className={cn('counter')}>Найдено: {books.length}</h2>
             {books.length !== 0
               ? <Dropdown
                 options={sortOptions}
@@ -54,7 +55,7 @@ function BooksSection() {
             <CardList
               cards={sortedCards}
             />
-            {(totalSearched && books.length < totalSearched - duplicates)
+            {(totalSearched && books.length < totalSearched)
               ? <Button
                 style={cn('loadMore')}
                 text='Загрузить еще'

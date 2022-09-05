@@ -14,11 +14,16 @@ export const getCurrentBook = createAsyncThunk(
       return bookFromState;
     } else {
       const adress = `${REQUEST_ADRESS}/${bookIdForSearch}`;
-      return fetchDataHandler({
-        adress,
-        errorHandler: rejectWithValue,
-        errorMessage: FETCH_ERROR_MESSAGE,
-      });
+      // return fetchDataHandler({
+      //   adress,
+      //   errorHandler: rejectWithValue,
+      //   errorMessage: FETCH_ERROR_MESSAGE,
+      // });
+      const response = await fetch(adress);
+      if (!response.ok) {
+        return rejectWithValue(FETCH_ERROR_MESSAGE);
+      }
+      return await response.json();
     }
   }
 );

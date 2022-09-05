@@ -1,4 +1,12 @@
 import { PayloadAction } from '@reduxjs/toolkit';
+
+// интерфейс ответа сервера на запрос книжек
+export interface IFetchBooksRequest {
+  items: IBook[],
+  kind: string;
+  totalItems: number;
+}
+
 // интерфейс книжки с сервера
 export interface IBook {
   accessInfo: {
@@ -62,6 +70,7 @@ export interface IBook {
   }
 }
 
+// интерфейсы стора для книжек, когда запрос от сервера обработан
 interface IPagination {
   totalItems: number | null;
   duplicates: number;
@@ -77,8 +86,8 @@ export interface ICategory {
 
 export interface IBooks {
   [x: string]: any;
-  data: IBook[] | []; //[] // уточнить
-  currentBook: IBook | {}//Object; // уточнить
+  data: IBook[];
+  currentBook: IBook | {};
   pagination: IPagination;
   isFetchDone: boolean;
   error: string | null;

@@ -2,16 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { IBooks } from '../../../types/types';
 
-import { RootState } from './../../rootReducer';
-
+import { setBooksReducer } from './reducers/setBooks';
 import { clearBooksReducer } from './reducers/clearBooks';
 import { setErrorReducer } from './reducers/setError';
 import { setSearchQueryReducer } from './reducers/setSearchQuery';
 import { setSelectedCategoryReducer } from './reducers/setSelectedCategory';
 
-import { fetchBooks, handleFulfilledFetchBooks } from './MiddleWares/fetchBooks';
+import { fetchBooks } from './MiddleWares/fetchBooks';
 import { getCurrentBook, handleFulfilledGetCurrentBook } from './MiddleWares/getCurrentBook';
 import { setSelectedSortOptionReducer } from './reducers/setSelectedSortOption';
+
 
 
 const initialState: IBooks = {
@@ -47,23 +47,13 @@ const initialState: IBooks = {
 };
 
 //extraReducers helpers
-const handlePending = (state: IBooks): IBooks => {
-  return {
-    ...state,
-    isFetchDone: false,
-    error: null,
-  }
-  // state.isFetchDone = false;
-  // state.error = null;
+const handlePending = (state: IBooks): void => {
+  state.isFetchDone = false;
+  state.error = null;
 };
-const handleError = (state: IBooks, { payload }: PayloadAction<string>): IBooks => {
-  return {
-    ...state,
-    isFetchDone: true,
-    error: payload,
-  }
-  // state.isFetchDone = true;
-  // state.error = payload;
+const handleError = (state: IBooks, { payload }: PayloadAction<string | undefined>): void => {
+  state.isFetchDone = true;
+  state.error = payload as string;
 };
 
 export const booksSlice = createSlice({
@@ -78,20 +68,12 @@ export const booksSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchBooks.pending, handlePending);
-    builder.addCase(fetchBooks.fulfilled, handleFulfilledFetchBooks);
-    // builder.addCase(fetchBooks.rejected, handleError);
+    builder.addCase(fetchBooks.fulfilled, setBooksReducer);
+    builder.addCase(fetchBooks.rejected, handleError);
     builder.addCase(getCurrentBook.pending, handlePending);
     builder.addCase(getCurrentBook.fulfilled, handleFulfilledGetCurrentBook);
     // builder.addCase(getCurrentBook.rejected, handleError);
   },
-  // extraReducers: {
-  //   [fetchBooks.pending]: handlePending,
-  //   [getCurrentBook.pending]: handlePending,
-  //   [fetchBooks.fulfilled]: handleFulfilledFetchBooks,
-  //   [getCurrentBook.fulfilled]: handleFulfilledGetCurrentBook,
-  //   [fetchBooks.rejected]: handleError,
-  //   [getCurrentBook.rejected]: handleError,
-  // },
 });
 
 export const {
