@@ -1,10 +1,10 @@
-import React from 'react';
+import { FC } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './LoadingSpinner.module.scss';
 const cn = classNames.bind(styles);
 
-function LoadingSpinner() {
+const LoadingSpinner: FC = () => {
   return (
     <div className={cn('spinner')}>
       <div></div>
@@ -17,6 +17,6 @@ function LoadingSpinner() {
       <div></div>
     </div>
   );
-}
+};
 
 export default LoadingSpinner;
