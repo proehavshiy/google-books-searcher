@@ -106,3 +106,13 @@ export interface IPreloadedState {
 export type Reducer<T, K = void> = (state: T, action: PayloadAction<K>) => T | void;
 
 
+export interface ICardForRendering {
+  image: string;
+  title: string;
+  categories: string[];
+  authors: string[];
+  publishedDate: string;
+  id: string;
+}
+
+
