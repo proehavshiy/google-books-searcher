@@ -12,7 +12,7 @@ import store from './redux/rootReducer';
 
 const persistor = persistStore(store);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -22,5 +22,5 @@ root.render(
         </PersistGate>
       </Router>
     </Provider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
