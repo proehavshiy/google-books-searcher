@@ -1,13 +1,6 @@
-import { IBooks } from '../../../../types/types';
+import { IBooks, Reducer } from '../../../../types/types';
 
-export const clearBooksReducer = (state: IBooks): IBooks => {
-  console.log('clearBooksReducer:', state);
-  // const updState = {
-  //   ...state,
-  //   data: [],
-  // };
-  // return updState;
-
+export const clearBooksReducer: Reducer<IBooks> = (state) => {
   return {
     ...state,
     data: [],

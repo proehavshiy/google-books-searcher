@@ -1,17 +1,14 @@
-
-import { PayloadAction } from '@reduxjs/toolkit';
-
 import { IBooks, IFetchBooksRequest } from '../../../../types/types';
 import { deleteAndCountDuplicates } from '../../../../utils/deleteAndCountDuplicates';
+
+import { Reducer } from './../../../../types/types';
 
 interface IPayload {
   responseData: IFetchBooksRequest;
   isRequestByForm: boolean;
 };
 
-type SetBooksPayload = PayloadAction<IPayload>;
-
-export const setBooksReducer = (state: IBooks, { payload }: SetBooksPayload) => {
+export const setBooksReducer: Reducer<IBooks, IPayload> = (state, { payload }) => {
   state.isFetchDone = true;
 
   const { responseData: { totalItems = 0, items = [] }, isRequestByForm } = payload;

@@ -1,13 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { IBooks, Reducer } from '../../../../types/types';
 
-import { IBooks } from '../../../../types/types';
-
-export const setSearchQueryReducer = (state: IBooks, { payload }: PayloadAction<string>): IBooks => {
-  // const updState = {
-  //   ...state,
-  //   searchQuery: payload,
-  // };
-  // return updState;
+export const setSearchQueryReducer: Reducer<IBooks, string> = (state, { payload }) => {
   return {
     ...state,
     searchQuery: payload,

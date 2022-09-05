@@ -40,13 +40,11 @@ export const fetchBooks = createAsyncThunk<
       if (!response.ok) {
         return rejectWithValue(FETCH_ERROR_MESSAGE);
       }
-      //return await response.json();
       const responseData = await response.json();
       return {
         isRequestByForm,
         responseData,
       };
-
     } catch {
       return rejectWithValue(FETCH_ERROR_MESSAGE);
     }

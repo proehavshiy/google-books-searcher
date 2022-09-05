@@ -4,15 +4,14 @@ import { IBooks } from '../../../types/types';
 
 import { setBooksReducer } from './reducers/setBooks';
 import { clearBooksReducer } from './reducers/clearBooks';
+import { setCurrentBookReducer } from './reducers/setCurrentBook';
 import { setErrorReducer } from './reducers/setError';
 import { setSearchQueryReducer } from './reducers/setSearchQuery';
 import { setSelectedCategoryReducer } from './reducers/setSelectedCategory';
-
-import { fetchBooks } from './MiddleWares/fetchBooks';
-import { getCurrentBook, handleFulfilledGetCurrentBook } from './MiddleWares/getCurrentBook';
 import { setSelectedSortOptionReducer } from './reducers/setSelectedSortOption';
 
-
+import { fetchBooks } from './MiddleWares/fetchBooks';
+import { fetchCurrentBook } from './MiddleWares/fetchCurrentBook';
 
 const initialState: IBooks = {
   data: [],
@@ -70,9 +69,9 @@ export const booksSlice = createSlice({
     builder.addCase(fetchBooks.pending, handlePending);
     builder.addCase(fetchBooks.fulfilled, setBooksReducer);
     builder.addCase(fetchBooks.rejected, handleError);
-    builder.addCase(getCurrentBook.pending, handlePending);
-    builder.addCase(getCurrentBook.fulfilled, handleFulfilledGetCurrentBook);
-    // builder.addCase(getCurrentBook.rejected, handleError);
+    builder.addCase(fetchCurrentBook.pending, handlePending);
+    builder.addCase(fetchCurrentBook.fulfilled, setCurrentBookReducer);
+    builder.addCase(fetchCurrentBook.rejected, handleError);
   },
 });
 

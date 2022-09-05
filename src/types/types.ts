@@ -103,6 +103,6 @@ export interface IPreloadedState {
 }
 
 // алиас для редюсеров
-export type Reducer<T, K> = (state: T, action: PayloadAction<K>) => T;
+export type Reducer<T, K = void> = (state: T, action: PayloadAction<K>) => T | void;
 
 

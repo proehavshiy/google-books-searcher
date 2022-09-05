@@ -1,13 +1,6 @@
-import { PayloadAction } from '@reduxjs/toolkit';
+import { IBooks, Reducer } from '../../../../types/types';
 
-import { IBooks } from '../../../../types/types';
-
-export const setErrorReducer = (state: IBooks, { payload }: PayloadAction<string>): IBooks => {
-  // const updState = {
-  //   ...state,
-  //   error: payload,
-  // };
-  // return updState;
+export const setErrorReducer: Reducer<IBooks, string> = (state, { payload }) => {
   return {
     ...state,
     error: payload,

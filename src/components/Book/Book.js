@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { v4 as uuidv4 } from 'uuid';
 
-import { getCurrentBook } from '../../redux/slices/booksSlice/MiddleWares/getCurrentBook';
+import { fetchCurrentBook } from '../../redux/slices/booksSlice/MiddleWares/fetchCurrentBook';
 import constants from '../../constants/constants';
 
 import styles from './Book.module.scss';
@@ -23,7 +23,7 @@ function Book() {
   const book = useSelector((state) => state.books.currentBook);
 
   useEffect(() => {
-    dispatch(getCurrentBook(id));
+    dispatch(fetchCurrentBook(id));
   }, [dispatch, id]);
 
   const {

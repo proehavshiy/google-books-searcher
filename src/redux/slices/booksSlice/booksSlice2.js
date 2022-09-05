@@ -6,7 +6,7 @@ import { setSearchQueryReducer } from './reducers/setSearchQuery';
 import { setSelectedCategoryReducer } from './reducers/setSelectedCategory';
 
 import { fetchBooks, handleFulfilledFetchBooks } from './MiddleWares/fetchBooks';
-import { getCurrentBook, handleFulfilledGetCurrentBook } from './MiddleWares/getCurrentBook';
+import { getCurrentBook, handleFulfilledGetCurrentBook } from './MiddleWares/fetchCurrentBook';
 import { setSelectedSortOptionReducer } from './reducers/setSelectedSortOption';
 
 //extraReducers helpers
