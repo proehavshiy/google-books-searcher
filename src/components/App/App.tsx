@@ -46,17 +46,17 @@ const App: FC = () => {
           element={<ErrorPage />}
         />
       </Routes>
-      {/* <Modal
+      <Modal
         isOpen={isLoading}
       >
         <LoadingSpinner />
-      </Modal> */}
-      {/* <Modal
+      </Modal>
+      <Modal
         isOpen={error}
         onClose={closeErrorModal}
       >
         <div>{error}</div>
-      </Modal> */}
+      </Modal>
     </div>
   );
 };

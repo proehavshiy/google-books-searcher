@@ -1,10 +1,16 @@
-import React, { useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from './Modal.module.scss';
 const cn = classNames.bind(styles);
 
-function Modal({ isOpen = false, onClose, children }) {
+interface IModal {
+  isOpen: boolean | string | null;
+  onClose?: () => void;
+  children: React.ReactNode;
+}
+
+const Modal: FC<IModal> = ({ isOpen = false, onClose, children }) => {
 
   useEffect(() => {
     if (onClose) {
@@ -19,6 +25,6 @@ function Modal({ isOpen = false, onClose, children }) {
       </div>
     </div>
   );
-}
+};
 
 export default Modal;
