@@ -1,13 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, FC } from 'react';
 
 import classNames from 'classnames/bind';
+
+import { ICategory } from '../../../types/types';
 
 import styles from './Dropdown.module.scss';
 const cn = classNames.bind(styles);
 
-function Dropdown({ options, currentOption, handleOption }) {
-  const [areOptionsVisible, setAreOptionsVisible] = useState(false);
-  const selectorRef = useRef(null);
+interface IDropdown {
+  options: ICategory[];
+  currentOption: ICategory;
+  handleOption: (selectedOption: ICategory) => void;
+}
+
+const Dropdown: FC<IDropdown> = ({ options, currentOption, handleOption }) => {
+  const [areOptionsVisible, setAreOptionsVisible] = useState<boolean>(false);
+  const selectorRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
     window.addEventListener('click', closeOptionsTab);
@@ -16,14 +24,14 @@ function Dropdown({ options, currentOption, handleOption }) {
     };
   }, [options]);
 
-  function closeOptionsTab(e) {
-    if (e.target === selectorRef.current) return;
+  function closeOptionsTab(e?: MouseEvent): void {
+    if (e && e.target === selectorRef.current) return;
     setAreOptionsVisible(false);
   }
 
-  function selectOption(selectedOption) {
+  function selectOption(selectedOption: ICategory): void {
     handleOption(selectedOption);
-    closeOptionsTab(selectedOption);
+    closeOptionsTab();
   }
 
   return (
@@ -43,12 +51,12 @@ function Dropdown({ options, currentOption, handleOption }) {
               key={option.id}
               onClick={() => selectOption(option)}
             >
-              {option?.name}
+              {option.name}
             </li>
           ))}
       </ul>
     </div >
   );
-}
+};
 
 export default Dropdown;

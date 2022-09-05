@@ -42,7 +42,7 @@ const BooksSection: FC = () => {
               ? <Dropdown
                 options={sortOptions}
                 currentOption={selectedSortOption}
-                handleOption={(selectedOption: ICategory) => {
+                handleOption={(selectedOption) => {
                   dispatch(setSelectedSortOption(selectedOption));
                 }}
               />
