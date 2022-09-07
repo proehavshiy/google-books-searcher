@@ -16,7 +16,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <Router basename='/'>
+      <Router basename='/google-books-searcher'>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
