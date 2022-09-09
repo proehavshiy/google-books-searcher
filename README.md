@@ -5,7 +5,7 @@
 <br />
 
 [Посмотреть деплой](https://proehavshiy.github.io/google-books-searcher/)
-![](https://github.com/proehavshiy/google-books-searcher/blob/main/demo.gif)
+![](https://github.com/proehavshiy/forgifs/blob/main/demo.gif)
 
 <br/>
 
